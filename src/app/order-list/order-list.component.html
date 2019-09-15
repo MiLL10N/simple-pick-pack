@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col">
+    <table border="1" bordercolor="white" class="w-100">
+      <tr class="text-center text-white" style="background: #0394fc">
+        <td>วันที่จัดส่ง</td>
+        <td>รหัสลูกค้า</td>
+        <td>ชื่อลูกค้า</td>
+        <td>จังหวัด</td>
+        <td>เขต</td>
+        <td>มูลค่า (บาท)</td>
+        <td>Ship to</td>
+        <td>ขนส่ง</td>
+      </tr>
+      <tr *ngFor="let item of simpleDataList;let i = index" class="{{i%2==0?'sky-background':'sky-background-2'}}">
+        <td>{{item.shipDate}}</td>
+        <td>{{item.custNo}}</td>
+        <td>{{item.custName}}</td>
+        <td>{{item.province}}</td>
+        <td>{{item.subProvince}}</td>
+        <td class="text-center">{{item.price | number}}</td>
+        <td>{{item.shipTo}}</td>
+        <td>{{item.deliveryName}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

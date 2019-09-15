@@ -1,0 +1,17 @@
+<div class="container" *ngIf="isLogin">
+  <div class="row">
+    <div class="col text-center" style="height: 7rem">
+      <span style="font-size:4rem">BANNER</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <app-menu></app-menu>
+    </div>
+    <div class="col-sm-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<app-login></app-login>
