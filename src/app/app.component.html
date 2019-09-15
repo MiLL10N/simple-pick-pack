@@ -14,4 +14,4 @@
   </div>
 </div>
 
-<app-login></app-login>
+<app-login *ngIf="!isLogin" (isLogin)="invokeLogin($event)"></app-login>

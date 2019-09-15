@@ -8,20 +8,20 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <form>
+              <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                  <input required type="text" class="form-control" placeholder="Username" aria-label="Username" name="userName" [(ngModel)]="loginModel.userName">
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Password" aria-label="Password">
+                  <input required type="password" class="form-control" placeholder="Password" aria-label="Password" name="password" [(ngModel)]="loginModel.password">
                 </div>
-                <button type="button" class="btn btn-primary w-100">LOGIN</button>
+                <button type="submit" class="btn btn-primary w-100">LOGIN</button>
               </form>
             </div>
           </div>
