@@ -7,9 +7,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickListComponent implements OnInit {
 
+  simplePickList = [{
+    pickNumber: 10091900003,
+    status: 'Open',
+    price: 300000,
+    pickNumberDetail : [
+      {
+        itemGroup: 'F1-คู่มือ',
+        desc: 'something'
+      },
+      {
+        itemGroup: 'F1-คู่มือ',
+        desc: 'something'
+      },{
+        itemGroup: 'F1-คู่มือ',
+        desc: 'something'
+      },{
+        itemGroup: 'F1-คู่มือ',
+        desc: 'something'
+      },{
+        itemGroup: 'F1-คู่มือ',
+        desc: 'something'
+      },{
+        itemGroup: 'F1-คู่มือ',
+        desc: 'something'
+      }
+    ]
+  }];
+
+  selectedPickNumber : any = null;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectPickNumber(pickNumber: any) {
+    this.selectedPickNumber = pickNumber;
   }
 
 }

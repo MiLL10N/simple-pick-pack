@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" style="height: 100vh">
     <div class="col my-auto">
       <div class="card w-50 card-center">
         <div class="card-header text-center">
@@ -13,13 +13,17 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                   </div>
-                  <input required type="text" class="form-control" placeholder="Username" aria-label="Username" name="userName" [(ngModel)]="loginModel.userName">
+                  <input required type="text" [ngClass]="{'is-invalid': (loginForm.submitted && !loginModel.userName)}"
+                    class="form-control" placeholder="Username" aria-label="Username" name="userName"
+                    [(ngModel)]="loginModel.userName">
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
                   </div>
-                  <input required type="password" class="form-control" placeholder="Password" aria-label="Password" name="password" [(ngModel)]="loginModel.password">
+                  <input required type="password"
+                    [ngClass]="{'is-invalid': (loginForm.submitted && !loginModel.password)}" class="form-control"
+                    placeholder="Password" aria-label="Password" name="password" [(ngModel)]="loginModel.password">
                 </div>
                 <button type="submit" class="btn btn-primary w-100">LOGIN</button>
               </form>

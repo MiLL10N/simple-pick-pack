@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrderListComponent } from './order-list/order-list.component';
 import { LoginComponent } from './login/login.component';
+import { PackingComponent } from './packing/packing.component';
+import { PickListComponent } from './pick-list/pick-list.component';
 
 const routes: Routes = [
   {
@@ -11,6 +13,14 @@ const routes: Routes = [
   {
     path: 'order-list',
     component: OrderListComponent
+  },
+  {
+    path: 'packing',
+    component: PackingComponent
+  },
+  {
+    path: 'pick-list',
+    component: PickListComponent
   }
 ];
 

@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginForm: NgForm) {
-    console.log('loginForm : ', loginForm);
-    // this.isLogin.emit(true);
+    if (loginForm.valid) {
+      this.isLogin.emit(true);
+    }
   }
 }

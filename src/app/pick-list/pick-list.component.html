@@ -1,3 +1,37 @@
-<p>
-  pick-list works!
-</p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-inline">
+      <button class="btn btn-primary">ค้นหา</button>
+      <input type="text" class="form-control ml-3" placeholder="Pick Number">
+    </div>
+  </div>
+  <div class="col-sm-12 mt-1">
+    <table border="1" bordercolor="white" class="w-100">
+      <tr class="text-white" style="background: #0394fc">
+        <td class="p-1">Pick Number</td>
+        <td class="p-1">Status</td>
+        <td class="p-1">มูลค่า (บาท)</td>
+      </tr>
+      <tr *ngFor="let item of simplePickList;let i = index" class="{{i%2==0?'sky-background':'sky-background-2'}}">
+        <td class="p-1" style="cursor: pointer" (click)="selectPickNumber(item)">{{item.pickNumber}}</td>
+        <td class="p-1">{{item.status}}</td>
+        <td class="p-1">{{item.price | number}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-sm-12 mt-1" *ngIf="selectedPickNumber">
+    <table border="1" bordercolor="white" class="w-100">
+      <tr class="text-white" style="background: #0394fc">
+        <td class="p-1">No.</td>
+        <td class="p-1">Item Group</td>
+        <td class="p-1">Description</td>
+      </tr>
+      <tr *ngFor="let item of selectedPickNumber.pickNumberDetail;let i = index"
+        class="{{i%2==0?'sky-background':'sky-background-2'}}">
+        <td class="p-1">{{i+1}}</td>
+        <td class="p-1">{{item.itemGroup}}</td>
+        <td class="p-1">{{item.desc}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

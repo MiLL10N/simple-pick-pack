@@ -1,26 +1,71 @@
 <div class="row">
-  <div class="col">
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-primary" (click)="search()">ค้นหา</button>
+  </div>
+  <div class="col-sm-12 mt-1">
+    <div class="form-inline">
+      <div class="form-group">
+        <label>วันที่จัดส่ง</label>
+        <input type="date" class="form-control ml-3" [(ngModel)]="startDate" name="startDate" min="{{toDay}}">
+        <input type="date" class="form-control ml-3" [(ngModel)]="endDate" name="endDate" min="{{toDay}}">
+      </div>
+      <div class="form-group ml-3">
+        <label>เขตการขาย</label>
+        <input type="text" class="form-control ml-3" [(ngModel)]="marketArea" name="marketArea">
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>ชื่อ</label>
+          <input type="text" class="form-control" [(ngModel)]="custName" name="custName">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>จังหวัด</label>
+          <input type="text" class="form-control" [(ngModel)]="province" name="province">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>เลขที่เอกสาร</label>
+          <input type="text" class="form-control" [(ngModel)]="docNo" name="docNo">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 mt-1">
     <table border="1" bordercolor="white" class="w-100">
       <tr class="text-center text-white" style="background: #0394fc">
-        <td>วันที่จัดส่ง</td>
-        <td>รหัสลูกค้า</td>
-        <td>ชื่อลูกค้า</td>
-        <td>จังหวัด</td>
-        <td>เขต</td>
-        <td>มูลค่า (บาท)</td>
-        <td>Ship to</td>
-        <td>ขนส่ง</td>
+        <td class="px-3"><input type="checkbox" (click)="checkAll()" [ngModel]="checkSelected()"></td>
+        <td class="p-1">ลำดับที่</td>
+        <td class="p-1">วันที่จัดส่ง</td>
+        <td class="p-1">รหัสลูกค้า</td>
+        <td class="p-1">ชื่อลูกค้า</td>
+        <td class="p-1">จังหวัด</td>
+        <td class="p-1">เขต</td>
+        <td class="p-1">มูลค่า (บาท)</td>
+        <td class="p-1">Ship to</td>
+        <td class="p-1">ขนส่ง</td>
       </tr>
       <tr *ngFor="let item of simpleDataList;let i = index" class="{{i%2==0?'sky-background':'sky-background-2'}}">
-        <td>{{item.shipDate}}</td>
-        <td>{{item.custNo}}</td>
-        <td>{{item.custName}}</td>
-        <td>{{item.province}}</td>
-        <td>{{item.subProvince}}</td>
+        <td class="px-3"><input type="checkbox" [(ngModel)]="item.isSelected" name="checkbox_{{i}}"></td>
+        <td class="text-center">{{i+1}}</td>
+        <td class="p-1">{{item.shipDate}}</td>
+        <td class="p-1">{{item.custNo}}</td>
+        <td class="p-1">{{item.custName}}</td>
+        <td class="p-1">{{item.province}}</td>
+        <td class="p-1">{{item.subProvince}}</td>
         <td class="text-center">{{item.price | number}}</td>
-        <td>{{item.shipTo}}</td>
-        <td>{{item.deliveryName}}</td>
+        <td class="p-1">{{item.shipTo}}</td>
+        <td class="p-1">{{item.deliveryName}}</td>
       </tr>
     </table>
+  </div>
+  <div class="col-sm-12 mt-1">
+    <button class="btn btn-primary" (click)="addPickList()" [disabled]="!checkSelected()">
+      Add Pick List
+    </button>
   </div>
 </div>
