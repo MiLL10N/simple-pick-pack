@@ -10,43 +10,64 @@ import { CONST } from 'src/assets/const';
 })
 export class PickListComponent implements OnInit {
 
-  simplePickList = [{
-    pickNumber: 10091900003,
-    status: 'Open',
-    price: 300000,
-  }];
-
+  pickList: PickModal[] = new Array();
+  page: number;
   pickNum: string;
 
   selectedPickNumber: any = null;
 
   constructor(
     private mainService: MainService,
-    private loadingScreen : LoadingScreenService
+    private loadingScreen: LoadingScreenService
   ) { }
 
   ngOnInit() {
     this.getPickList();
   }
 
-  getPickList() {
+  getPickList(page?) {
+
+    this.loadingScreen.startLoading();
+
+    this.page = page?page:1;
     const jsonData = {
       pickNo: this.pickNum,
       userID: this.mainService.user.userId,
-      page: 1,
+      page: this.page,
       size: 10
     };
 
-    this.mainService.selectPickList(jsonData).subscribe(resp=>{
+    this.mainService.selectPickList(jsonData).subscribe(resp => {
       this.loadingScreen.stopLoading();
-    },error =>{
+      this.pickList = resp;
+    }, error => {
       this.loadingScreen.stopLoading();
-      alert(CONST.error);
+      this.pickList = new Array<PickModal>();
     });
+  }
+
+  nextPage() {
+    this.page++;
+    this.getPickList(this.page);
+  }
+
+  previousPage() {
+    this.page--;
+    this.getPickList(this.page);
   }
 
   selectPickNumber(pickNumber: any) {
     this.selectedPickNumber = pickNumber;
   }
 
+}
+
+export class PickModal {
+  active: boolean;
+  crateUser: number
+  createDate: string;
+  pickNo: string;
+  status: string;
+  updateDate: string;
+  updateUser: string;
 }

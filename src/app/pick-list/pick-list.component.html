@@ -1,23 +1,32 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="form-inline">
-      <button class="btn btn-primary">ค้นหา</button>
+      <button class="btn btn-primary" (click)="getPickList()">ค้นหา</button>
       <input type="text" class="form-control ml-3" placeholder="Pick Number" name="pickNum" [(ngModel)]="pickNum">
     </div>
   </div>
   <div class="col-sm-12 mt-1">
-    <table border="1" bordercolor="white" class="w-100">
+    <table *ngIf="pickList?.length"  table-hover border="1" bordercolor="white" class="w-100">
       <tr class="text-white" style="background: #0394fc">
         <td class="p-1">Pick Number</td>
         <td class="p-1">Status</td>
         <td class="p-1">มูลค่า (บาท)</td>
       </tr>
-      <tr *ngFor="let item of simplePickList;let i = index" class="{{i%2==0?'sky-background':'sky-background-2'}}">
-        <td class="p-1" style="cursor: pointer" (click)="selectPickNumber(item)">{{item.pickNumber}}</td>
+      <tr *ngFor="let item of pickList;let i = index" class="{{i%2==0?'sky-background':'sky-background-2'}}">
+        <td class="p-1" style="cursor: pointer">{{item.pickNo}}</td>
         <td class="p-1">{{item.status}}</td>
-        <td class="p-1">{{item.price | number}}</td>
+        <td class="p-1">xxxxxxxxxx</td>
       </tr>
     </table>
+    <div class="w-100 text-center" *ngIf="!pickList?.length">
+      <span class="mb-3">-- No Data --</span>
+    </div>
+  </div>
+  <div class="col-sm-6 mt-1">
+  </div>
+  <div class="col-sm-6 mt-1 text-right">
+    <button class="btn btn-primary" (click)="previousPage()" [disabled]="page==1 || !pickList?.length">Previous Page</button>
+    <button class="btn btn-primary ml-1" (click)="nextPage()" [disabled]="!pickList?.length">Next Page</button>
   </div>
   <div class="col-sm-12 mt-1" *ngIf="selectedPickNumber">
     <table border="1" bordercolor="white" class="w-100">

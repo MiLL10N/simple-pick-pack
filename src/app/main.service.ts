@@ -28,11 +28,11 @@ export class MainService {
   }
 
   updateInvoice(jsonData){
-    return this.httpService.post(CONST.url + 'PackingApi/api/Invoice/updateInvoicePick',jsonData);
+    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/updateInvoicePick',jsonData);
   }
 
   selectPickList(jsonData){
-    return this.httpService.post(CONST.url + 'PackingApi/api/Invoice/selectInvoicePick',jsonData);
+    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/selectInvoicePick',jsonData);
   }
 
   getRegion() {

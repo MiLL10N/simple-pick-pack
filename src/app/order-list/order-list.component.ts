@@ -51,7 +51,7 @@ export class OrderListComponent implements OnInit {
       this.invoiceList = resp;
     }, error => {
       this.loadingScreen.stopLoading();
-      alert(CONST.error);
+      this.invoiceList = new Array<InvoiceModel>();
     });
   }
 
@@ -88,29 +88,7 @@ export class OrderListComponent implements OnInit {
     };
 
     this.mainService.updateInvoice(jsonData).subscribe(resp => {
-      this.loadingScreen.stopLoading();
-      this.invoiceList = resp;
-    }, error => {
-      this.loadingScreen.stopLoading();
-      alert(CONST.error);
-    });
-  }
-
-  search() {
-    this.loadingScreen.startLoading();
-    const jsonData = {
-      docDueDate: '',
-      county: '',
-      docNum: '',
-      region: '',
-      cardName: '',
-      page: this.page,
-      size: 10
-    };
-
-    this.mainService.selectInvoice(jsonData).subscribe(resp => {
-      this.loadingScreen.stopLoading();
-      this.invoiceList = resp;
+      this.searchData();
     }, error => {
       this.loadingScreen.stopLoading();
       alert(CONST.error);
