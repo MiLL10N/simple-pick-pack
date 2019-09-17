@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MainService } from '../main.service';
+import { CONST } from 'src/assets/const';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +13,25 @@ export class LoginComponent implements OnInit {
   @Output() isLogin = new EventEmitter<boolean>();
 
   loginModel = {
-    userName: '',
-    password: ''
-  }
+    userName: 'admin',
+    password: '1qaz2wsx'
+  };
 
-  constructor() { }
+  constructor(
+    private mainService: MainService
+  ) { }
 
   ngOnInit() {
   }
 
   login(loginForm: NgForm) {
     if (loginForm.valid) {
-      this.isLogin.emit(true);
+      this.mainService.login(this.loginModel.userName, this.loginModel.password).subscribe(resp => {
+        this.mainService.user = resp;
+        this.isLogin.emit(true);
+      }, error => {
+        alert(CONST.error);
+      });
     }
   }
 }

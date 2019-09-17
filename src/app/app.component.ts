@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MainService } from './main.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,15 @@ export class AppComponent {
   isLogin = false;
 
   constructor(
-    private route : Router
-  ){}
+    private route: Router,
+    private mainService: MainService
+  ) { }
+
+  // tslint:disable-next-line: use-life-cycle-interface
+  ngOnInit(): void {
+    this.mainService.getRegion();
+    this.mainService.getCountry();
+  }
 
   invokeLogin(e: any) {
     this.isLogin = e;

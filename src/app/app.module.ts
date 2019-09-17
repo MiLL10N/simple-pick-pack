@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,7 @@ import { PickListComponent } from './pick-list/pick-list.component';
 import { PackingComponent } from './packing/packing.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { LoginComponent } from './login/login.component';
     PickListComponent,
     PackingComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingScreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
