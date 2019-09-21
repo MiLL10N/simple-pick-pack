@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   @Output() isLogin = new EventEmitter<boolean>();
 
   loginModel = {
-    userName: 'admin',
-    password: '1qaz2wsx'
+    userName: '',
+    password: ''
   };
 
   constructor(
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         this.mainService.user = resp;
         this.isLogin.emit(true);
       }, error => {
-        alert(CONST.error);
+        alert(CONST.incorrectLogin);
       });
     }
   }

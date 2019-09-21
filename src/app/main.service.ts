@@ -13,7 +13,7 @@ export class MainService {
 
   regionList: any[] = [];
   countryList: any[] = [];
-  user : any;
+  user: any;
 
   login(userName: string, password: string) {
     const jsonData = {
@@ -27,12 +27,20 @@ export class MainService {
     return this.httpService.post(CONST.url + 'PackingApi/api/Invoice/selectInvoice', jsonData);
   }
 
-  updateInvoice(jsonData){
-    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/updateInvoicePick',jsonData);
+  updateInvoice(jsonData) {
+    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/updateInvoicePick', jsonData);
   }
 
-  selectPickList(jsonData){
-    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/selectInvoicePick',jsonData);
+  selectPickList(jsonData) {
+    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/selectInvoicePick', jsonData);
+  }
+
+  selectPickItemGroup(pickNo: number) {
+    return this.httpService.get(CONST.url + 'PackingApi/api/Pick/selectPickItemGroup/' + pickNo);
+  }
+
+  selectPickItem(pickNo: number) {
+    return this.httpService.get(CONST.url + 'PackingApi/api/Pick/selectPickItemGroup/' + pickNo);
   }
 
   getRegion() {

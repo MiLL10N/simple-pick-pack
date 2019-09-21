@@ -1,45 +1,57 @@
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-2">
     <div class="form-inline">
-      <button class="btn btn-primary" (click)="getPickList()">ค้นหา</button>
-      <input type="text" class="form-control ml-3" placeholder="Pick Number" name="pickNum" [(ngModel)]="pickNum">
+      <button class="btn btn-primary btn-block" (click)="getPickList()">ค้นหา</button>
     </div>
   </div>
+  <div class="col-sm-5 pl-0">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Pick Number</span>
+      </div>
+      <input type="text" class="form-control" name="pickNum" [(ngModel)]="pickNum">
+    </div>
+  </div>
+  <div class="col-sm-5"></div>
   <div class="col-sm-12 mt-1">
-    <table *ngIf="pickList?.length"  table-hover border="1" bordercolor="white" class="w-100">
-      <tr class="text-white" style="background: #0394fc">
-        <td class="p-1">Pick Number</td>
-        <td class="p-1">Status</td>
-        <td class="p-1">มูลค่า (บาท)</td>
+    <table *ngIf="pickList?.length" table-hover border="1" bordercolor="white" class="w-100">
+      <tr class="text-white bg-primary">
+        <td class="p-2">Pick Number</td>
+        <td class="p-2">Status</td>
+        <td class="p-2">มูลค่า (บาท)</td>
       </tr>
-      <tr *ngFor="let item of pickList;let i = index" class="{{i%2==0?'sky-background':'sky-background-2'}}">
-        <td class="p-1" style="cursor: pointer">{{item.pickNo}}</td>
-        <td class="p-1">{{item.status}}</td>
-        <td class="p-1">xxxxxxxxxx</td>
+      <tr *ngFor="let item of pickList;let i = index" class="{{i%2==0?'bg-white':'sky-background'}}"
+        style="font-size: 0.9rem">
+        <td class="p-2" style="cursor: pointer" (click)="selectPickNumber(item.pickNo)">{{item.pickNo?item.pickNo:'-'}}
+        </td>
+        <td class="p-2">{{item.status?item.status:'-'}}</td>
+        <td class="p-2">{{(item.totalPrice?item.totalPrice:'-') | number}}</td>
       </tr>
     </table>
     <div class="w-100 text-center" *ngIf="!pickList?.length">
       <span class="mb-3">-- No Data --</span>
     </div>
   </div>
-  <div class="col-sm-6 mt-1">
+  <div class="col-sm-6 my-1">
   </div>
-  <div class="col-sm-6 mt-1 text-right">
-    <button class="btn btn-primary" (click)="previousPage()" [disabled]="page==1 || !pickList?.length">Previous Page</button>
-    <button class="btn btn-primary ml-1" (click)="nextPage()" [disabled]="!pickList?.length">Next Page</button>
+  <div class="col-sm-6 my-1 text-right">
+    <button class="btn btn-primary" (click)="previousPage()" [disabled]="page==1 || !pickList?.length">Previous
+      Page</button>
+    <button class="btn btn-primary ml-1" (click)="nextPage()"
+      [disabled]="!pickList?.length || pickList?.length < 10">Next Page</button>
   </div>
-  <div class="col-sm-12 mt-1" *ngIf="selectedPickNumber">
+  <div class="col-sm-12 mt-1" *ngIf="pickItemGroup">
     <table border="1" bordercolor="white" class="w-100">
-      <tr class="text-white" style="background: #0394fc">
-        <td class="p-1">No.</td>
-        <td class="p-1">Item Group</td>
-        <td class="p-1">Description</td>
+      <tr class="text-white bg-primary">
+        <td class="p-2">No.</td>
+        <td class="p-2">Item Group</td>
+        <td class="p-2">Description</td>
       </tr>
-      <tr *ngFor="let item of selectedPickNumber.pickNumberDetail;let i = index"
-        class="{{i%2==0?'sky-background':'sky-background-2'}}">
-        <td class="p-1">{{i+1}}</td>
-        <td class="p-1">{{item.itemGroup}}</td>
-        <td class="p-1">{{item.desc}}</td>
+      <tr *ngFor="let item of pickItemGroup;let i = index" class="{{i%2==0?'bg-white':'sky-background'}}"
+        style="font-size: 0.9rem">
+        <td class="p-2">{{i+1}}</td>
+        <td class="p-2">{{item.itemGrpCode}}</td>
+        <td class="p-2">{{item.itemGrpName}}</td>
       </tr>
     </table>
   </div>

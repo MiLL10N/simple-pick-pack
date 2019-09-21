@@ -14,7 +14,6 @@ export class OrderListComponent implements OnInit {
   province = '';
   custName = '';
   docNo = '';
-  toDay: string;
   startDate: string;
   endDate: string;
   invoiceList: InvoiceModel[] = new Array();
@@ -26,19 +25,16 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.toDay = new Date().getFullYear() + '-' + (((new Date().getMonth() + '').length === 1 ?
-      ('0' + (new Date().getMonth() + 1)) : new Date().getMonth() + 1)) + '-' + new Date().getDate();
-    this.startDate = this.toDay;
-    this.endDate = this.toDay;
     this.searchData();
     this.page = 1;
   }
 
   searchData(page?) {
-    this.page = page?page:1;
+    this.page = page ? page : 1;
     this.loadingScreen.startLoading();
     const jsonData = {
-      docDueDate: '',
+      startDocDueDate: this.startDate,
+      endDocDueDate: this.endDate,
       county: this.province,
       docNum: this.docNo,
       region: this.marketArea,
@@ -76,12 +72,13 @@ export class OrderListComponent implements OnInit {
 
   checkAll(this: any) {
     const isSelected = !this.checkSelected();
-    for (let item of this.invoiceList) {
+    for (const item of this.invoiceList) {
       item.isSelected = isSelected;
     }
   }
 
   addPickList() {
+    this.loadingScreen.startLoading();
     const jsonData = {
       docNums: this.pushSelectData(),
       userId: this.mainService.user.userId
@@ -96,7 +93,7 @@ export class OrderListComponent implements OnInit {
   }
 
   pushSelectData() {
-    let selectedString = [];
+    const selectedString = [];
     for (const item of this.invoiceList) {
       if (item.isSelected) {
         selectedString.push(item.docNum);

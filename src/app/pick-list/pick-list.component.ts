@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
 import { LoadingScreenService } from '../loading-screen.service';
-import { CONST } from 'src/assets/const';
 
 @Component({
   selector: 'app-pick-list',
@@ -10,11 +9,11 @@ import { CONST } from 'src/assets/const';
 })
 export class PickListComponent implements OnInit {
 
-  pickList: PickModal[] = new Array();
+  pickList: PickModel[] = new Array();
   page: number;
   pickNum: string;
 
-  selectedPickNumber: any = null;
+  pickItemGroup: PickItemGroupModel[];
 
   constructor(
     private mainService: MainService,
@@ -28,10 +27,10 @@ export class PickListComponent implements OnInit {
   getPickList(page?) {
 
     this.loadingScreen.startLoading();
-
-    this.page = page?page:1;
+    this.pickItemGroup = null;
+    this.page = page ? page : 1;
     const jsonData = {
-      pickNo: this.pickNum,
+      pickNo: this.pickNum ? this.pickNum : '',
       userID: this.mainService.user.userId,
       page: this.page,
       size: 10
@@ -42,7 +41,7 @@ export class PickListComponent implements OnInit {
       this.pickList = resp;
     }, error => {
       this.loadingScreen.stopLoading();
-      this.pickList = new Array<PickModal>();
+      this.pickList = new Array<PickModel>();
     });
   }
 
@@ -57,17 +56,31 @@ export class PickListComponent implements OnInit {
   }
 
   selectPickNumber(pickNumber: any) {
-    this.selectedPickNumber = pickNumber;
+    this.loadingScreen.startLoading();
+    this.pickItemGroup = null;
+    this.mainService.selectPickItemGroup(pickNumber).subscribe(resp => {
+      this.loadingScreen.stopLoading();
+      this.pickItemGroup = resp;
+    }, error => {
+      this.loadingScreen.stopLoading();
+    });
   }
 
 }
 
-export class PickModal {
+export class PickModel {
   active: boolean;
-  crateUser: number
+  crateUser: number;
   createDate: string;
   pickNo: string;
   status: string;
   updateDate: string;
   updateUser: string;
+  totalPrice: number;
+}
+
+export class PickItemGroupModel {
+  itemGrpCode: string;
+  itemGrpName: string;
+  qty: number;
 }
