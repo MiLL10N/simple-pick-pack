@@ -20,7 +20,7 @@ export class OrderListComponent implements OnInit {
   page: number;
 
   constructor(
-    private mainService: MainService,
+    public mainService: MainService,
     private loadingScreen: LoadingScreenService
   ) { }
 
