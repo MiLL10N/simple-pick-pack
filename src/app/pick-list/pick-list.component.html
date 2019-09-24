@@ -1,4 +1,4 @@
-<div class="row" style="background-color: #fff;">
+<div class="row bg-color-page">
   <div class="col-sm-12 p-3">
     <h3>หน้า Pick List</h3>
   </div>
@@ -32,13 +32,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of pickList;let i = index">
-            <td class="text-center">{{i+1}}</td>
-            <td style="cursor: pointer" class="text-center" (click)="selectPickNumber(item.pickNo)">
+          <tr *ngFor="let item of pickList;let i = index" class="text-center " (click)="selectPickNumber(item.pickNo)">
+            <td class="text-center cursor-pointer">{{i+1}}</td>
+            <td class="text-center cursor-pointer">
               {{item.pickNo?item.pickNo:'-'}}
             </td>
-            <td class="text-center">{{item.status?item.status:'-'}}</td>
-            <td class="text-right">{{(item.totalPrice?item.totalPrice:'-') | number}}</td>
+            <td class="text-center cursor-pointer">{{item.status?item.status:'-'}}</td>
+            <td class="text-right cursor-pointer">{{(item.totalPrice?item.totalPrice:'-') | number}}</td>
           </tr>
         </tbody>
 
@@ -56,22 +56,5 @@
     <button class="btn-sm btn-primary ml-1" (click)="nextPage()"
       [disabled]="!pickList?.length || pickList?.length < 10">Next</button>
   </div>
-  <div class="col-sm-12 mt-1" *ngIf="pickItemGroup">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>Item Group</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of pickItemGroup;let i = index" style="font-size: 0.9rem">
-          <td>{{i+1}}</td>
-          <td>{{item.itemGrpCode}}</td>
-          <td>{{item.itemGrpName}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
 </div>

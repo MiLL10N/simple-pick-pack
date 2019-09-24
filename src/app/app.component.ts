@@ -8,7 +8,7 @@ import { MainService } from './main.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'simple-pick-pack';
+  title = 'Packing System';
   isLogin = false;
 
   constructor(

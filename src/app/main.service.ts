@@ -20,31 +20,31 @@ export class MainService {
       userName,
       password
     };
-    return this.httpService.post(CONST.url + 'PackingApi/api/User/selectUser', jsonData);
+    return this.httpService.post(CONST.url + '/api/User/selectUser', jsonData);
   }
 
   selectInvoice(jsonData) {
-    return this.httpService.post(CONST.url + 'PackingApi/api/Invoice/selectInvoice', jsonData);
+    return this.httpService.post(CONST.url + '/api/Invoice/selectInvoice', jsonData);
   }
 
   updateInvoice(jsonData) {
-    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/updateInvoicePick', jsonData);
+    return this.httpService.post(CONST.url + '/api/Pick/updateInvoicePick', jsonData);
   }
 
   selectPickList(jsonData) {
-    return this.httpService.post(CONST.url + 'PackingApi/api/Pick/selectInvoicePick', jsonData);
+    return this.httpService.post(CONST.url + '/api/Pick/selectInvoicePick', jsonData);
   }
 
   selectPickItemGroup(pickNo: number) {
-    return this.httpService.get(CONST.url + 'PackingApi/api/Pick/selectPickItemGroup/' + pickNo);
+    return this.httpService.get(CONST.url + '/api/Pick/selectPickItemGroup/' + pickNo);
   }
 
-  selectPickItem(pickNo: number) {
-    return this.httpService.get(CONST.url + 'PackingApi/api/Pick/selectPickItemGroup/' + pickNo);
+  selectPickItemByGroup(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pick/selectPickItemByGroup/' , jsonData);
   }
 
   getRegion() {
-    this.httpService.get(CONST.url + 'PackingApi/api/Master/selectRegion').subscribe(resp => {
+    this.httpService.get(CONST.url + '/api/Master/selectRegion').subscribe(resp => {
       this.regionList = resp;
     }, error => {
       alert(CONST.error);
@@ -52,7 +52,7 @@ export class MainService {
   }
 
   getCountry() {
-    this.httpService.get(CONST.url + 'PackingApi/api/Master/selectCounty').subscribe(resp => {
+    this.httpService.get(CONST.url + '/api/Master/selectCounty').subscribe(resp => {
       this.countryList = resp;
     }, error => {
       alert(CONST.error);

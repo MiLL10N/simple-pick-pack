@@ -11,3 +11,9 @@
 .bg-color{
     background-color: #F4F6F7;
 }
+.bg-color-page{
+    background-color: #ffffff;
+}
+.cursor-pointer{
+    cursor: pointer;
+  }

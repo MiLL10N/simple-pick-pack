@@ -12,6 +12,8 @@ import { PackingComponent } from './packing/packing.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
+import { PickListItemComponent } from './pick-list-item/pick-list-item.component';
+import { PickListItemByGroupComponent } from './pick-list-item-by-group/pick-list-item-by-group.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     PackingComponent,
     MainComponent,
     LoginComponent,
-    LoadingScreenComponent
+    LoadingScreenComponent,
+    PickListItemComponent,
+    PickListItemByGroupComponent
   ],
   imports: [
     BrowserModule,

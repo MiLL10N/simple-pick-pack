@@ -1,3 +1,4 @@
+import { PickListItemComponent } from './pick-list-item/pick-list-item.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrderListComponent } from './order-list/order-list.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'pick-list',
     component: PickListComponent
+  },
+  {
+    path: 'pick-list-item/:id',
+    component: PickListItemComponent
   }
 ];
 

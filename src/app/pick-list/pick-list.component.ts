@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
 import { LoadingScreenService } from '../loading-screen.service';
@@ -13,11 +14,11 @@ export class PickListComponent implements OnInit {
   page: number;
   pickNum: string;
 
-  pickItemGroup: PickItemGroupModel[];
 
   constructor(
     private mainService: MainService,
-    private loadingScreen: LoadingScreenService
+    private loadingScreen: LoadingScreenService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class PickListComponent implements OnInit {
   getPickList(page?) {
 
     this.loadingScreen.startLoading();
-    this.pickItemGroup = null;
+
     this.page = page ? page : 1;
     const jsonData = {
       pickNo: this.pickNum ? this.pickNum : '',
@@ -56,14 +57,7 @@ export class PickListComponent implements OnInit {
   }
 
   selectPickNumber(pickNumber: any) {
-    this.loadingScreen.startLoading();
-    this.pickItemGroup = null;
-    this.mainService.selectPickItemGroup(pickNumber).subscribe(resp => {
-      this.loadingScreen.stopLoading();
-      this.pickItemGroup = resp;
-    }, error => {
-      this.loadingScreen.stopLoading();
-    });
+    this.route.navigate(  ['/pick-list-item', pickNumber]);
   }
 
 }
@@ -77,10 +71,4 @@ export class PickModel {
   updateDate: string;
   updateUser: string;
   totalPrice: number;
-}
-
-export class PickItemGroupModel {
-  itemGrpCode: string;
-  itemGrpName: string;
-  qty: number;
 }
