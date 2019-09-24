@@ -25,19 +25,20 @@
       <table *ngIf="pickList?.length" class="table table-hover">
         <thead>
           <tr>
-              <th>No.</th>
-            <th>Pick Number</th>
-            <th>Status</th>
-            <th>มูลค่า (บาท)</th>
+            <th class="text-center">No.</th>
+            <th class="text-center">Pick Number</th>
+            <th class="text-center">Status</th>
+            <th class="text-right"> มูลค่า</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of pickList;let i = index">
-              <td>{{i+1}}</td>
-            <td style="cursor: pointer" (click)="selectPickNumber(item.pickNo)">{{item.pickNo?item.pickNo:'-'}}
+            <td class="text-center">{{i+1}}</td>
+            <td style="cursor: pointer" class="text-center" (click)="selectPickNumber(item.pickNo)">
+              {{item.pickNo?item.pickNo:'-'}}
             </td>
-            <td>{{item.status?item.status:'-'}}</td>
-            <td>{{(item.totalPrice?item.totalPrice:'-') | number}}</td>
+            <td class="text-center">{{item.status?item.status:'-'}}</td>
+            <td class="text-right">{{(item.totalPrice?item.totalPrice:'-') | number}}</td>
           </tr>
         </tbody>
 
@@ -50,7 +51,8 @@
   <div class="col-sm-6 my-1">
   </div>
   <div class="col-sm-6 my-1 text-right">
-    <button class="btn-sm btn-primary" (click)="previousPage()" [disabled]="page==1 || !pickList?.length">Previous</button>
+    <button class="btn-sm btn-primary" (click)="previousPage()"
+      [disabled]="page==1 || !pickList?.length">Previous</button>
     <button class="btn-sm btn-primary ml-1" (click)="nextPage()"
       [disabled]="!pickList?.length || pickList?.length < 10">Next</button>
   </div>
