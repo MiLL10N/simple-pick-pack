@@ -1,7 +1,7 @@
 import { LoadingScreenService } from "./../loading-screen.service";
 import { MainService } from "./../main.service";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-pick-list-item",
@@ -14,7 +14,8 @@ export class PickListItemComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private loadingScreen: LoadingScreenService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private route: Router
   ) {}
 
   ngOnInit() {
@@ -34,6 +35,10 @@ export class PickListItemComponent implements OnInit {
         this.loadingScreen.stopLoading();
       }
     );
+  }
+
+  selectItemByGroup(itemGrpCode:string){
+    this.route.navigate(  ['/pick-list-item-by-group'], {queryParams: {itemGrpCode:itemGrpCode,pickNumber:this.pickNumber}});
   }
 }
 export class PickItemGroupModel {
