@@ -1,7 +1,7 @@
 <div class="row bg-color-page">
-    <div class="col-sm-12 p-3">
-        <h3 >หน้าคำสั่งซื้อ</h3>
-      </div>
+  <div class="col-sm-12 p-3">
+    <h3>หน้าคำสั่งซื้อ</h3>
+  </div>
   <div class="col-sm-12 mt-1">
     <div class="row">
       <div class="col-sm-2">
@@ -59,40 +59,40 @@
     </div>
   </div>
   <div class="col-sm-12 my-3 p-3">
-  
+
     <table *ngIf="invoiceList?.length" class="table table-hover">
       <thead>
         <tr class="text-center align-top">
-          <th class="text-center"><input type="checkbox" (click)="checkAll()" [ngModel]="checkSelected()"></th>
+          <th><input type="checkbox" (click)="checkAll()" [ngModel]="checkSelected()"></th>
           <!-- <th class="text-center">ลำดับ</th> -->
-          <th class="text-center">เลขที่เอกสาร</th>
-          <th class="text-center">วันที่จัดส่ง</th>
-          <th class="text-center">ลูกค้า</th> 
-          <th class="text-center">ชื่อลูกค้า</th>
-          <th class="text-center">จังหวัด</th>
-          <th class="text-center">เขต</th>
+          <th>เลขที่เอกสาร</th>
+          <th>วันที่จัดส่ง</th>
+          <th>ลูกค้า</th>
+          <th>ชื่อลูกค้า</th>
+          <th>จังหวัด</th>
+          <th>เขต</th>
           <th class="text-right">มูลค่า</th>
-          <th class="text-center">Ship to</th>
-          <th class="text-center">ขนส่ง</th>
+          <th>Ship to</th>
+          <th>ขนส่ง</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of invoiceList;let i = index" >
-          <td class="text-center"><input type="checkbox" [(ngModel)]="item.isSelected" name="checkbox_{{i}}"></td>
+        <tr *ngFor="let item of invoiceList;let i = index" class="text-center">
+          <td><input type="checkbox" [(ngModel)]="item.isSelected" name="checkbox_{{i}}"></td>
           <!-- <td class="text-center">{{i+1}}</td> -->
-          <td class="text-center">{{item.docNum}}</td>
-          <td class="text-center">{{(item.docDueDate?item.docDueDate:'-') | date:'dd/MM/yyyy'}}</td>
-          <td class="text-center">{{item.cardCode?item.cardCode:'-'}}</td>
-          <td class="text-center">{{item.cardName?item.cardName:'-'}}</td>
-          <td class="text-center">{{item.county?item.county:'-'}}</td>
-          <td class="text-center">{{item.descript?item.descript:'-'}}</td>
+          <td>{{item.docNum}}</td>
+          <td>{{(item.docDueDate?item.docDueDate:'-') | date:'dd/MM/yyyy'}}</td>
+          <td>{{item.cardCode?item.cardCode:'-'}}</td>
+          <td>{{item.cardName?item.cardName:'-'}}</td>
+          <td>{{item.county?item.county:'-'}}</td>
+          <td>{{item.descript?item.descript:'-'}}</td>
           <td nowrap class="text-right">{{(item.price?item.price:'-') | number}}</td>
-          <td class="text-center">{{item.shipToCode?item.shipToCode:'-'}}</td>
-          <td class="text-center">{{item.transporter?item.transporter:'-'}}</td>
+          <td>{{item.shipToCode?item.shipToCode:'-'}}</td>
+          <td>{{item.transporter?item.transporter:'-'}}</td>
         </tr>
       </tbody>
     </table>
-  
+
     <div class="w-100 text-center" *ngIf="!invoiceList?.length">
       <span class="mb-3">-- No Data --</span>
     </div>
@@ -101,13 +101,13 @@
     <button class="btn btn-primary" (click)="addPickList()" [disabled]="!checkSelected()">
       Add Pick List
     </button>
-    </div>
+  </div>
   <div class="col-sm-6 mt-1 text-right ">
     <button class="btn-sm btn-primary" (click)="previousPage()" [disabled]="page==1 || !invoiceList?.length">Previous
-      </button>
+    </button>
     <button class="btn-sm btn-primary ml-1 " (click)="nextPage()"
       [disabled]="!invoiceList?.length || invoiceList?.length < 10">Next</button>
   </div>
 
-    <div class="col-sm-12 p-3"></div>
+  <div class="col-sm-12 p-3"></div>
 </div>

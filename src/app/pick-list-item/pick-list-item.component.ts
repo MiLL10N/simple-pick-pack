@@ -37,13 +37,18 @@ export class PickListItemComponent implements OnInit {
     );
   }
 
-  selectItemByGroup(itemGrpCode:string){
-    this.route.navigate(  ['/pick-list-item-by-group'], {queryParams: {itemGrpCode:itemGrpCode,pickNumber:this.pickNumber}});
+  selectItemByGroup(itemGrpCode: string) {
+    this.route.navigate(["/pick-list-item-by-group"], {
+      queryParams: {
+        ItemGrpCode: itemGrpCode,
+        PickNo: this.pickNumber
+      }
+    });
   }
 }
 export class PickItemGroupModel {
   itemGrpCode: string;
   itemGrpName: string;
   qty: number;
-  price:number
+  price: number;
 }

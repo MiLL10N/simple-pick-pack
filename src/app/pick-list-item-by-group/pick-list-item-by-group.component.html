@@ -2,5 +2,41 @@
   <div class="col-sm-12 p-3">
     <h3>หน้ารายละเอียด Pick</h3>
   </div>
-  {{params|json}}
+  <div class="col-sm-12">
+    <div class="text-center pb-3">
+      <strong >บริษัท แม็คเอ็ดดูเคชั่น จำกัด</strong>
+      <br />
+      <strong >ใบจัดสินค้าเลขที่ {{selectPickItemByGroupModel.pickNo}} –
+        {{selectPickItemByGroupModel.itemGrpName}} –
+        {{selectPickItemByGroupModel.docDueDate | date: 'dd/MM/yyyy'}}
+      </strong>
+
+    </div>
+  </div>
+  <div class="col-sm-12" *ngIf="selectPickItemByGroupModel.selectPickItems">
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-center">
+          <th>Location</th>
+          <th>No.</th>
+          <th>รหัสสินค้า</th>
+          <th>iSBN</th>
+          <th>Order</th>
+          <th>Pick</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let item of selectPickItemByGroupModel.selectPickItems;let i = index">
+          <td>{{item.binCode}}</td>
+          <td>{{i+1}}</td>
+          <td>{{item.itemCode}}</td>
+          <td>{{item.isbn}}</td>
+          <td>{{item.quantity}}</td>
+          <td><input type="checkbox" [checked]="item.flagPick"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
 </div>
