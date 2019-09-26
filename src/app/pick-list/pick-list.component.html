@@ -24,21 +24,23 @@
     <div>
       <table *ngIf="pickList?.length" class="table table-hover">
         <thead>
-          <tr>
-            <th class="text-center">No.</th>
-            <th class="text-center">Pick Number</th>
-            <th class="text-center">Status</th>
+          <tr class="text-center">
+            <th>No.</th>
+            <th>Pick Number</th>
+            <th>Status</th>
+            <th>Total Invoice</th>
             <th class="text-right"> มูลค่า</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of pickList;let i = index" class="text-center " (click)="selectPickNumber(item.pickNo)">
-            <td class="text-center cursor-pointer">{{i+1}}</td>
-            <td class="text-center cursor-pointer">
+          <tr *ngFor="let item of pickList;let i = index" class="text-center cursor-pointer" (click)="selectPickNumber(item.pickNo)">
+            <td >{{i+1}}</td>
+            <td >
               {{item.pickNo?item.pickNo:'-'}}
             </td>
-            <td class="text-center cursor-pointer">{{item.status?item.status:'-'}}</td>
-            <td class="text-right cursor-pointer">{{(item.totalPrice?item.totalPrice:'-') | number}}</td>
+            <td>{{item.status?item.status:'-'}}</td>
+            <td >{{item.totalDocNum?item.totalDocNum:'0'| number}}</td>
+            <td class="text-right">{{(item.totalPrice?item.totalPrice:'0') | number}}</td>
           </tr>
         </tbody>
 

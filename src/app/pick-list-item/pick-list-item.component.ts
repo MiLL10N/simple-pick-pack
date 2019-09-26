@@ -49,6 +49,5 @@ export class PickListItemComponent implements OnInit {
 export class PickItemGroupModel {
   itemGrpCode: string;
   itemGrpName: string;
-  qty: number;
-  price: number;
+  status: string;
 }

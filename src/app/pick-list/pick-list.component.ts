@@ -63,12 +63,9 @@ export class PickListComponent implements OnInit {
 }
 
 export class PickModel {
-  active: boolean;
-  crateUser: number;
-  createDate: string;
+
   pickNo: string;
   status: string;
-  updateDate: string;
-  updateUser: string;
+totalDocNum:number;
   totalPrice: number;
 }
