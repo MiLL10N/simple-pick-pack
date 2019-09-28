@@ -1,8 +1,8 @@
-<div class="row bg-color-page">
-  <div class="col-sm-12 p-3">
-    <h3>หน้า Pick List</h3>
+<div class="card">
+  <div class="card-header">
+    <h4>หน้า Pick List</h4>
   </div>
-  <div class="col-sm-12 mt-1 p-3">
+  <div class="card-body">
     <div class="row">
       <div class="col-sm-2">
         <button class="btn btn-primary btn-block" (click)="getPickList()">ค้นหา</button>
@@ -20,10 +20,10 @@
   </div>
 
 
-  <div class="col-sm-12 mt-1 p-3">
+  <div class="card-body">
     <div>
-      <table *ngIf="pickList?.length" class="table table-hover">
-        <thead>
+      <table *ngIf="pickList?.length" class="table table-hover table-striped">
+          <thead>
           <tr class="text-center">
             <th>No.</th>
             <th>Pick Number</th>
@@ -33,13 +33,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of pickList;let i = index" class="text-center cursor-pointer" (click)="selectPickNumber(item.pickNo)">
-            <td >{{i+1}}</td>
-            <td >
+          <tr *ngFor="let item of pickList;let i = index" class="text-center cursor-pointer"
+            (click)="selectPickNumber(item.pickNo)">
+            <td>{{i+1}}</td>
+            <td>
               {{item.pickNo?item.pickNo:'-'}}
             </td>
             <td>{{item.status?item.status:'-'}}</td>
-            <td >{{item.totalDocNum?item.totalDocNum:'0'| number}}</td>
+            <td>{{item.totalDocNum?item.totalDocNum:'0'| number}}</td>
             <td class="text-right">{{(item.totalPrice?item.totalPrice:'0') | number}}</td>
           </tr>
         </tbody>
@@ -50,13 +51,14 @@
       <span class="mb-3">-- No Data --</span>
     </div>
   </div>
-  <div class="col-sm-6 my-1">
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-next m-1" (click)="previousPage()"
+          [disabled]="page==1 || !pickList?.length"><span class="fa fa-chevron-left"> </span></button>
+        <button class="btn btn-next m-1" (click)="nextPage()"
+          [disabled]="!pickList?.length || pickList?.length < size"><span class="fa fa-chevron-right"> </span></button>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-6 my-1 text-right">
-    <button class="btn-sm btn-primary" (click)="previousPage()"
-      [disabled]="page==1 || !pickList?.length">Previous</button>
-    <button class="btn-sm btn-primary ml-1" (click)="nextPage()"
-      [disabled]="!pickList?.length || pickList?.length < 10">Next</button>
-  </div>
-
 </div>

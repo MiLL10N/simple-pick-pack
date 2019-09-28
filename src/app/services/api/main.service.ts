@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
-import { CONST } from '../assets/const'
+import { HttpService } from '../http/http.service';
+import { CONST } from '../../../assets/const'
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,13 @@ export class MainService {
   selectPickItemByGroup(jsonData) {
     return this.httpService.post(CONST.url + '/api/Pick/selectPickItemByGroup/' , jsonData);
   }
-
+  updatePickConfirm(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pick/updatePickConfirm/' , jsonData);
+  }
+  selectPickForPack(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pack/selectPickForPack/' , jsonData);
+  }
+  
   getRegion() {
     this.httpService.get(CONST.url + '/api/Master/selectRegion').subscribe(resp => {
       this.regionList = resp;

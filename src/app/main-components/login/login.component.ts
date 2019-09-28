@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MainService } from '../main.service';
+import { MainService } from '../../services/api/main.service';
 import { CONST } from 'src/assets/const';
 
 @Component({
@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.mainService.login("Admin", "1qaz2wsx").subscribe(resp => {
+      this.mainService.user = resp;
+      this.isLogin.emit(true);});
   }
 
   login(loginForm: NgForm) {

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MainService } from '../main.service';
-import { LoadingScreenService } from '../loading-screen.service';
+import { MainService } from '../../../services/api/main.service';
+import { LoadingScreenService } from '../../../services/loading/loading-screen.service';
 
 @Component({
   selector: 'app-pick-list',
@@ -12,6 +12,7 @@ export class PickListComponent implements OnInit {
 
   pickList: PickModel[] = new Array();
   page: number;
+  size: number;
   pickNum: string;
 
 
@@ -22,6 +23,8 @@ export class PickListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.page = 1;
+    this.size = 10;
     this.getPickList();
   }
 
@@ -34,7 +37,7 @@ export class PickListComponent implements OnInit {
       pickNo: this.pickNum ? this.pickNum : '',
       userID: this.mainService.user.userId,
       page: this.page,
-      size: 10
+      size: this.size
     };
 
     this.mainService.selectPickList(jsonData).subscribe(resp => {

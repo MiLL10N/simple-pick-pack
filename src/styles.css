@@ -1,19 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
 * {
-  font-family: 'Sarabun', sans-serif;
+  font-family: "Sarabun", sans-serif;
 }
 
 .input-group-text {
-    background: white;
-    color: black;
+  background: white;
+  color: black;
 }
-.bg-color{
-    background-color: #F4F6F7;
+.bg-color {
+  background-color: #f4f6f7;
 }
-.bg-color-page{
-    background-color: #ffffff;
+
+.cursor-pointer {
+  cursor: pointer;
 }
-.cursor-pointer{
-    cursor: pointer;
+thead {
+  background-color: #273746;
+  color: whitesmoke;
+}
+th {
+    font-weight: normal;
   }
+.btn-primary {
+  background-color: #2574a9;
+  border: #2574a9;
+}
+.btn-next {
+  background-color: #273746;
+  color: whitesmoke;
+  border-radius: 50%;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 14px;
+  
+}
+.btn-next:hover {
+    background-color: gray;
+    color: #273746;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  

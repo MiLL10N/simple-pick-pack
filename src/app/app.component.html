@@ -1,17 +1,12 @@
-<!-- <div class="row mx-0">
-  <div class="col text-center" style="height: 3rem;background: #cdeaff"> 
-  </div>
-</div> -->
-<div class="container-full my-3" *ngIf="isLogin">
-  <div class="row">
-    <div class="col-sm-2 boder-trans-5" >
-      <app-menu></app-menu>
-    </div>
-    <div class="col-sm-10 boder-trans-5" >
+
+<div class="sidebar-container" *ngIf="isLogin">
+  <app-menu></app-menu>
+</div>
+<div class="content-container" *ngIf="isLogin">
+
+  <div class="container-fluid">
       <router-outlet></router-outlet>
-    </div>
   </div>
 </div>
-
 <app-login *ngIf="!isLogin" (isLogin)="invokeLogin($event)"></app-login>
 <app-loading-screen></app-loading-screen>

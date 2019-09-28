@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoadingScreenService } from 'src/app/loading-screen.service';
+import { LoadingScreenService } from 'src/app/services/loading/loading-screen.service';
 
 @Component({
   selector: 'app-loading-screen',

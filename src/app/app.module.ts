@@ -5,15 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { OrderListComponent } from './order-list/order-list.component';
-import { PickListComponent } from './pick-list/pick-list.component';
-import { PackingComponent } from './packing/packing.component';
-import { MainComponent } from './main/main.component';
-import { LoginComponent } from './login/login.component';
-import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
-import { PickListItemComponent } from './pick-list-item/pick-list-item.component';
-import { PickListItemByGroupComponent } from './pick-list-item-by-group/pick-list-item-by-group.component';
+import { MenuComponent } from './main-components/menu/menu.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { PickListComponent } from './components/pick/pick-list/pick-list.component';
+import { LoginComponent } from './main-components/login/login.component';
+import { LoadingScreenComponent } from './main-components/loading-screen/loading-screen.component';
+import { PickListItemComponent } from './components/pick/pick-list-item/pick-list-item.component';
+import { PickListItemByGroupComponent } from './components/pick/pick-list-item-by-group/pick-list-item-by-group.component';
+import { OrderPackComponent } from './components/pack/order-pack/order-pack.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +20,11 @@ import { PickListItemByGroupComponent } from './pick-list-item-by-group/pick-lis
     MenuComponent,
     OrderListComponent,
     PickListComponent,
-    PackingComponent,
-    MainComponent,
     LoginComponent,
     LoadingScreenComponent,
     PickListItemComponent,
-    PickListItemByGroupComponent
+    PickListItemByGroupComponent,
+    OrderPackComponent
   ],
   imports: [
     BrowserModule,

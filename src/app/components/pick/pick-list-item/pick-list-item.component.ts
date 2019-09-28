@@ -1,5 +1,5 @@
-import { LoadingScreenService } from "./../loading-screen.service";
-import { MainService } from "./../main.service";
+import { LoadingScreenService } from "../../../services/loading/loading-screen.service";
+import { MainService } from "../../../services/api/main.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -41,7 +41,7 @@ export class PickListItemComponent implements OnInit {
     this.route.navigate(["/pick-list-item-by-group"], {
       queryParams: {
         ItemGrpCode: itemGrpCode,
-        PickNo: this.pickNumber
+        PickNo: this.pickNumber,
       }
     });
   }

@@ -1,7 +1,22 @@
-.boder-trans-5{
-    border: 5px solid transparent;
+.boder-trans-5 {
+  border: 5px solid transparent;
 }
 .container-full {
-    margin: 0 auto;
-    width: 95%;
-  }
+  margin: 0 auto;
+  width: 95%;
+}
+.sidebar-container {
+  position: fixed;
+  width: 220px;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #212F3D;
+  color: whitesmoke;
+}
+
+.content-container {
+  padding-top: 20px;
+  padding-left: 220px;
+}

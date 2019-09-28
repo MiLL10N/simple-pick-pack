@@ -1,10 +1,10 @@
-<div class="row bg-color-page">
-  <div class="col-sm-12 p-3">
-    <h3>หน้ากลุ่มหนังสือ</h3>
+<div class="card">
+  <div class="card-header">
+    <h4>หน้ากลุ่มหนังสือ</h4>
   </div>
-  <div class="col-sm-12 mt-1" *ngIf="pickItemGroup">
-    <table class="table table-hover">
-      <thead>
+  <div class="card-body" *ngIf="pickItemGroup">
+    <table class="table table-hover table-striped">
+        <thead>
         <tr class="text-center">
           <th>No.</th>
           <th>Item Group</th>
@@ -20,7 +20,6 @@
           <td>{{item.itemGrpCode}}</td>
           <td>{{item.itemGrpName}}</td>
           <td>{{item.status}}</td>
-     
         </tr>
       </tbody>
     </table>

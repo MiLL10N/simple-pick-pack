@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MainService } from '../main.service';
+import { MainService } from '../../../services/api/main.service';
 import { CONST } from 'src/assets/const';
-import { LoadingScreenService } from '../loading-screen.service';
+import { LoadingScreenService } from '../../../services/loading/loading-screen.service';
 
 @Component({
   selector: 'app-order-list',
@@ -18,6 +18,7 @@ export class OrderListComponent implements OnInit {
   endDate: string;
   invoiceList: InvoiceModel[] = new Array();
   page: number;
+  size:number;
 
   constructor(
     public mainService: MainService,
@@ -27,6 +28,7 @@ export class OrderListComponent implements OnInit {
   ngOnInit() {
     this.searchData();
     this.page = 1;
+    this.size = 10;
   }
 
   searchData(page?) {
