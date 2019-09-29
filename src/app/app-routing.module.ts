@@ -1,3 +1,4 @@
+import { PackListComponent } from './components/pack/pack-list/pack-list.component';
 import { OrderPackComponent } from './components/pack/order-pack/order-pack.component';
 import { PickListItemByGroupComponent } from './components/pick/pick-list-item-by-group/pick-list-item-by-group.component';
 import { PickListItemComponent } from './components/pick/pick-list-item/pick-list-item.component';
@@ -32,7 +33,12 @@ const routes: Routes = [
   {
     path: 'order-pack',
     component: OrderPackComponent
+  } ,
+  {
+    path: 'pack-list',
+    component: PackListComponent
   }
+
 
 ];
 

@@ -7,6 +7,10 @@
 .input-group-text {
   background: white;
   color: black;
+  font-size: small;
+}
+.form-control {
+  font-size: small;
 }
 .bg-color {
   background-color: #f4f6f7;
@@ -15,13 +19,7 @@
 .cursor-pointer {
   cursor: pointer;
 }
-thead {
-  background-color: #273746;
-  color: whitesmoke;
-}
-th {
-    font-weight: normal;
-  }
+
 .btn-primary {
   background-color: #2574a9;
   border: #2574a9;
@@ -33,17 +31,22 @@ th {
   text-decoration: none;
   display: inline-block;
   padding: 8px 14px;
-  
 }
 .btn-next:hover {
-    background-color: gray;
-    color: #273746;
+  background-color: gray;
+  color: #273746;
 }
 
-
 table {
-    border-collapse: collapse;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  
+  border-collapse: collapse;
+  border-radius: 6px;
+  overflow: hidden;
+ 
+}
+thead {
+  background-color: #273746;
+  color: whitesmoke;
+}
+th {
+  font-weight: normal;
+}

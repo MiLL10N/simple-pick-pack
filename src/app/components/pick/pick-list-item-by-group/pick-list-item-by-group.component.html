@@ -4,42 +4,52 @@
   </div>
   <div class="card-body">
     <div class="text-center">
-      <span >บริษัท แม็คเอ็ดดูเคชั่น จำกัด</span>
+      <span>บริษัท แม็คเอ็ดดูเคชั่น จำกัด</span>
       <br />
-      <span >ใบจัดสินค้าเลขที่ {{selectPickItemByGroupModel.pickNo}} –
-        {{selectPickItemByGroupModel.itemGrpName}} –
-        {{selectPickItemByGroupModel.docDueDate | date: 'dd/MM/yyyy'}}
+      <span>ใบจัดสินค้าเลขที่ {{selectPickItemlists.pickNo}} –
+        {{selectPickItemlists.itemGrpName}} –
+        {{selectPickItemlists.docDueDate | date: 'dd/MM/yyyy'}}
       </span>
     </div>
   </div>
-  <div class="card-body" *ngIf="selectPickItemByGroupModel.selectPickItems">
+  <div class="card-body" *ngIf="selectPickItemlists.selectPickItems">
     <table class="table table-hover table-striped">
-        <thead>
+      <thead>
         <tr class="text-center">
           <th>Location</th>
           <th>No.</th>
           <th>รหัสสินค้า</th>
           <th>iSBN</th>
           <th>Order</th>
-        
+
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center" *ngFor="let item of selectPickItemByGroupModel.selectPickItems;let i = index">
+        <tr class="text-center" *ngFor="let item of selectPickItemlists.selectPickItems;let i = index">
           <td>{{item.binCode}}</td>
           <td>{{i+1}}</td>
           <td>{{item.itemCode}}</td>
           <td>{{item.isbn}}</td>
           <td>{{item.quantity}}</td>
-         
+
         </tr>
       </tbody>
     </table>
     <div class="card-footer">
       <div class="row">
+        <div class="col-sm-12 text-center">
+          <button class="btn btn-next m-1" (click)="previousPage()" [disabled]="page==1 || !selectPickItemlists.selectPickItems?.length"><span
+              class="fa fa-chevron-left"> </span></button>
+              <button class="btn btn-next m-1" (click)="nextPage()"
+              [disabled]="!selectPickItemlists.selectPickItems?.length || selectPickItemlists.selectPickItems?.length < size"> <span
+                class="fa fa-chevron-right"></span></button>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-12">
-          <button class="btn btn-primary m-1 pull-right">  <span class="fa fa-print"></span>Print</button>
-          <button class="btn btn-primary m-1 pull-right" (click)="updatePickConfirm()" *ngIf="flagConfirm">Confirm</button>
+          <button class="btn btn-primary m-1 pull-right"> <span class="fa fa-print"></span>Print</button>
+          <button class="btn btn-primary m-1 pull-right" (click)="updatePickConfirm()"
+            *ngIf="flagConfirm">Confirm</button>
         </div>
       </div>
     </div>

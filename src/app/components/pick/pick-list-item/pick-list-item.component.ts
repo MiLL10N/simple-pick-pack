@@ -2,6 +2,7 @@ import { LoadingScreenService } from "../../../services/loading/loading-screen.s
 import { MainService } from "../../../services/api/main.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { selectPickItemGroupModel } from 'src/app/Model/Pick';
 
 @Component({
   selector: "app-pick-list-item",
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class PickListItemComponent implements OnInit {
   pickNumber: string;
-  pickItemGroup: PickItemGroupModel[];
+  pickItemGroup: selectPickItemGroupModel[];
   constructor(
     private mainService: MainService,
     private loadingScreen: LoadingScreenService,
@@ -45,9 +46,4 @@ export class PickListItemComponent implements OnInit {
       }
     });
   }
-}
-export class PickItemGroupModel {
-  itemGrpCode: string;
-  itemGrpName: string;
-  status: string;
 }

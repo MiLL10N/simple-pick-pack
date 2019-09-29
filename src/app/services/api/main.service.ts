@@ -48,7 +48,12 @@ export class MainService {
   selectPickForPack(jsonData) {
     return this.httpService.post(CONST.url + '/api/Pack/selectPickForPack/' , jsonData);
   }
-  
+  updateOrderPack(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pack/updateOrderPack', jsonData);
+  }
+  selectPackList(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pack/selectPackList/' , jsonData);
+  }
   getRegion() {
     this.httpService.get(CONST.url + '/api/Master/selectRegion').subscribe(resp => {
       this.regionList = resp;
@@ -64,4 +69,5 @@ export class MainService {
       alert(CONST.error);
     });
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../../services/api/main.service';
 import { CONST } from 'src/assets/const';
 import { LoadingScreenService } from '../../../services/loading/loading-screen.service';
+import { selectInvoiceModel } from 'src/app/Model/order';
 
 @Component({
   selector: 'app-order-list',
@@ -16,7 +17,7 @@ export class OrderListComponent implements OnInit {
   docNo = '';
   startDate: string;
   endDate: string;
-  invoiceList: InvoiceModel[] = new Array();
+  invoiceList: selectInvoiceModel[] = new Array();
   page: number;
   size:number;
 
@@ -26,9 +27,10 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchData();
     this.page = 1;
     this.size = 10;
+    this.searchData();
+ 
   }
 
   searchData(page?) {
@@ -42,14 +44,14 @@ export class OrderListComponent implements OnInit {
       region: this.marketArea,
       cardName: this.custName,
       page: this.page,
-      size: 10
+      size: this.size
     };
     this.mainService.selectInvoice(jsonData).subscribe(resp => {
       this.loadingScreen.stopLoading();
       this.invoiceList = resp;
     }, error => {
       this.loadingScreen.stopLoading();
-      this.invoiceList = new Array<InvoiceModel>();
+      this.invoiceList = new Array<selectInvoiceModel>();
     });
   }
 
@@ -104,20 +106,4 @@ export class OrderListComponent implements OnInit {
     return selectedString;
   }
 
-}
-
-export class InvoiceModel {
-  docNum: string;
-  docDate: string;
-  docDueDate: string;
-  cardCode: string;
-  cardName: string;
-  county: string;
-  descript: string;
-  price: string;
-  shipToCode: string;
-  transporter: string;
-  address: string;
-  remark: string;
-  isSelected = false;
 }

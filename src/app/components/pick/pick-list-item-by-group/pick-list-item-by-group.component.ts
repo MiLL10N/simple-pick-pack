@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { MainService } from "../../../services/api/main.service";
 import { LoadingScreenService } from "../../../services/loading/loading-screen.service";
+import { selectPickItemByGroupModel } from 'src/app/Model/Pick';
 
 @Component({
   selector: "app-pick-list-item-by-group",
@@ -9,9 +10,11 @@ import { LoadingScreenService } from "../../../services/loading/loading-screen.s
   styleUrls: ["./pick-list-item-by-group.component.css"]
 })
 export class PickListItemByGroupComponent implements OnInit {
-  selectPickItemByGroupModel: selectPickItemByGroupModel = new selectPickItemByGroupModel();
+  selectPickItemlists: selectPickItemByGroupModel = new selectPickItemByGroupModel();
   params: any;
   flagConfirm: boolean;
+  page: number;
+  size: number;
   constructor(
     private mainService: MainService,
     private loadingScreen: LoadingScreenService,
@@ -20,21 +23,31 @@ export class PickListItemByGroupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.page = 1;
+    this.size = 10;
     this.activatedRoute.queryParams.subscribe(p => {
       this.params = p;
+      console.log(this.params);
       this.selectItemByGroup();
     });
   }
-  selectItemByGroup() {
+  selectItemByGroup(page?) {
+    this.page = page ? page : 1;
+    const jsonData = {
+      pickNo: this.params.PickNo,
+      itemGrpCode:this.params.ItemGrpCode,
+      page: this.page,
+      size: this.size,
+    };
+    console.log(jsonData);
    this.flagConfirm=false;
     this.loadingScreen.startLoading();
-    this.mainService.selectPickItemByGroup(this.params).subscribe(
+    this.mainService.selectPickItemByGroup(jsonData).subscribe(
       resp => {
         this.loadingScreen.stopLoading();
-        console.log(resp);
-        this.selectPickItemByGroupModel = resp;
+        this.selectPickItemlists = resp;
     
-        this.selectPickItemByGroupModel.selectPickItems.forEach(item => {
+        this.selectPickItemlists.selectPickItems.forEach(item => {
           if (item.flagPick == false) {
             this.flagConfirm = true;
           }
@@ -56,19 +69,14 @@ export class PickListItemByGroupComponent implements OnInit {
       }
     );
   }
+  nextPage() {
+    this.page++;
+    this.selectItemByGroup(this.page);
+  }
+
+  previousPage() {
+    this.page--;
+    this.selectItemByGroup(this.page);
+  }
 }
-export class selectPickItemByGroupModel {
-  itemGrpCode: string;
-  docDueDate: string;
-  pickNo: string;
-  itemGrpName: string;
-  selectPickItems: selectPickItem[];
-}
-export class selectPickItem {
-  binCode: string;
-  dscription: string;
-  isbn: string;
-  itemCode: string;
-  quantity: number;
-  flagPick: any;
-}
+
