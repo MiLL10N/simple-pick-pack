@@ -68,7 +68,7 @@
       <thead>
         <tr class="text-center align-top">
           <th><input type="checkbox" (click)="checkAll()" [ngModel]="checkSelected()"></th>
-          <!-- <th class="text-center">ลำดับ</th> -->
+          <th >ลำดับ</th>
           <th>เลขที่เอกสาร</th>
           <th>PickNo</th>
           <th>วันที่จัดส่ง</th>
@@ -84,7 +84,7 @@
       <tbody>
         <tr *ngFor="let item of selectPickForPackList;let i = index" class="text-center">
           <td><input type="checkbox" [(ngModel)]="item.isSelected" name="checkbox_{{i}}"></td>
-          <!-- <td class="text-center">{{i+1}}</td> -->
+          <td>{{i+1+((page-1)*size)}}</td>
           <td>{{item.docNum}}</td>
           <td>{{item.pickNo}}</td>
           <td>{{(item.docDueDate?item.docDueDate:'-') | date:'dd/MM/yyyy'}}</td>

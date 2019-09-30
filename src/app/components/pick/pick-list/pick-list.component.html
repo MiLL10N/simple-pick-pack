@@ -35,7 +35,7 @@
         <tbody>
           <tr *ngFor="let item of pickList;let i = index" class="text-center cursor-pointer"
             (click)="selectPickNumber(item.pickNo)">
-            <td>{{i+1}}</td>
+            <td>{{i+1+((page-1)*size)}}</td>
             <td>{{item.pickNo?item.pickNo:'-'}}</td>
             <td>{{item.totalDocNum?item.totalDocNum:'0'| number}}</td>
             <td class="text-right">{{(item.totalPrice?item.totalPrice:'0') | number}}</td>

@@ -54,6 +54,9 @@ export class MainService {
   selectPackList(jsonData) {
     return this.httpService.post(CONST.url + '/api/Pack/selectPackList/' , jsonData);
   }
+  selectPackListForConfirm(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pack/selectPackListForConfirm/' , jsonData);
+  }
   getRegion() {
     this.httpService.get(CONST.url + '/api/Master/selectRegion').subscribe(resp => {
       this.regionList = resp;

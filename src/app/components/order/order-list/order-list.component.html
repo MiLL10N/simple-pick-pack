@@ -68,7 +68,7 @@
       <thead>
         <tr class="text-center align-top">
           <th><input type="checkbox" (click)="checkAll()" [ngModel]="checkSelected()"></th>
-          <!-- <th class="text-center">ลำดับ</th> -->
+          <th >ลำดับ</th>
           <th>เลขที่เอกสาร</th>
           <th>วันที่จัดส่ง</th>
           <th>ลูกค้า</th>
@@ -83,7 +83,7 @@
       <tbody>
         <tr *ngFor="let item of invoiceList;let i = index" class="text-center">
           <td><input type="checkbox" [(ngModel)]="item.isSelected" name="checkbox_{{i}}"></td>
-          <!-- <td class="text-center">{{i+1}}</td> -->
+          <td>{{i+1+((page-1)*size)}}</td>
           <td>{{item.docNum}}</td>
           <td>{{(item.docDueDate?item.docDueDate:'-') | date:'dd/MM/yyyy'}}</td>
           <td>{{item.cardCode?item.cardCode:'-'}}</td>

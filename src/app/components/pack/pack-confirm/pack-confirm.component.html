@@ -1,3 +1,66 @@
-<p>
-  pack-confirm works!
-</p>
+<div class="card">
+    <div class="card-header">
+        <h4>หน้า Pack List</h4>
+    </div>
+    <div class="card-body">
+        <div>
+            <table *ngIf="packConfirmList?.length" class="table table-hover table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th>No.</th>
+                        <th>รหัสสินค้า</th>
+                        <th>ชื่อสินค้า</th>
+                        <th>Order</th>
+                        <th>ISBN</th>
+                        <th>Recheck</th>
+                        <th>Package</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of packConfirmList;let i = index" class="text-center">
+                        <td>{{i+1+((page-1)*size)}}</td>
+                        <td> {{item.itemCode?item.itemCode:'-'}}</td>
+                        <td class="text-left">{{item.dscription?item.dscription:'-'}}</td>
+                        <td>{{(item.quantity?item.quantity:'0') | number}}</td>
+                        <td>{{item.isbn?item.isbn:'-'}}</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" style="width: 150px !important"
+                                [(ngModel)]="item.isbnRecheck" name="isbnRecheck_{{i}}">
+                        </td>
+                        <td class="text-left">
+                            <select [(ngModel)]="item.package" class="browser-default form-control form-control-sm"  style="width: 150px !important">
+                                <option *ngFor="let package of packagelists;" [ngValue]="package">
+                                    {{package}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-control-sm" style="width: 50px !important"
+                                [(ngModel)]="item.unit" name="unit_{{i}}" min="0">
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="w-100 text-center" *ngIf="!packConfirmList?.length">
+            <span class="mb-3">-- No Data --</span>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-primary m-1 pull-left" (click)="CreatePack()" >
+                    <span class="fa fa-floppy-o"></span> Create Pack
+                </button>
+                <button class="btn btn-next m-1" (click)="previousPage()"
+                    [disabled]="page==1 || !packConfirmList?.length"><span class="fa fa-chevron-left"> </span></button>
+                <button class="btn btn-next m-1" (click)="nextPage()"
+                    [disabled]="!packConfirmList?.length || packConfirmList?.length < size"><span
+                        class="fa fa-chevron-right"> </span></button>
+            </div>
+        </div>
+    </div>
+</div>

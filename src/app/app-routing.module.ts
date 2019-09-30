@@ -1,3 +1,4 @@
+import { PackConfirmComponent } from './components/pack/pack-confirm/pack-confirm.component';
 import { PackListComponent } from './components/pack/pack-list/pack-list.component';
 import { OrderPackComponent } from './components/pack/order-pack/order-pack.component';
 import { PickListItemByGroupComponent } from './components/pick/pick-list-item-by-group/pick-list-item-by-group.component';
@@ -38,7 +39,11 @@ const routes: Routes = [
     path: 'pack-list',
     component: PackListComponent
   }
-
+  ,
+  {
+    path: 'pack-confirm/:id',
+    component: PackConfirmComponent
+  }
 
 ];
 

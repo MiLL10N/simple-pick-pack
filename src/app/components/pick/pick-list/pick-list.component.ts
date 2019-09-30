@@ -33,7 +33,6 @@ export class PickListComponent implements OnInit {
     this.page = page ? page : 1;
     const jsonData = {
       pickNo: this.pickNum ? this.pickNum : "",
-      userID: this.mainService.user.userId,
       page: this.page,
       size: this.size
     };

@@ -20,4 +20,12 @@ export class selectPickForPack {
     totalDocNum: number;
     totalPrice: number;
   }
-  
+  export class  selectPackListForConfirm{
+    itemCode: string;
+    dscription: string;
+    quantity: number;
+    isbn: string;
+    isbnRecheck : string;
+    unit: number;
+    package : string;
+  }

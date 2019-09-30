@@ -20,6 +20,7 @@ export class OrderPackComponent implements OnInit {
   size: number;
   pickNo: string;
   selectPickForPackList: selectPickForPack[] = new Array();
+
   constructor(
     public mainService: MainService,
     private loadingScreen: LoadingScreenService
