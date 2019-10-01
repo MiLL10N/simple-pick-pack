@@ -20,6 +20,7 @@ export class AppComponent {
   ngOnInit(): void {
     this.mainService.getRegion();
     this.mainService.getCountry();
+    this.mainService.getPackage();
   }
 
   invokeLogin(e: any) {

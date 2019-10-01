@@ -29,8 +29,9 @@
                                 [(ngModel)]="item.isbnRecheck" name="isbnRecheck_{{i}}">
                         </td>
                         <td class="text-left">
-                            <select [(ngModel)]="item.package" class="browser-default form-control form-control-sm"  style="width: 150px !important">
-                                <option *ngFor="let package of packagelists;" [ngValue]="package">
+                            <select [(ngModel)]="item.package" class="form-control form-control-sm"
+                                style="width: 150px !important">
+                                <option *ngFor="let package of mainService.packageList;" [ngValue]="package">
                                     {{package}}
                                 </option>
                             </select>
@@ -48,12 +49,36 @@
             <span class="mb-3">-- No Data --</span>
         </div>
     </div>
-
+    <div class="card-body">
+        <div>
+            <table *ngIf="mainService.packageList?.length" class="table table-hover table-striped w-25">
+                <thead>
+                    <tr class="text-center">
+                        <th colspan="2">Package in Pack Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td>
+                            <select class="form-control form-control-sm" style="width: 150px !important"  [(ngModel)]="confirmPackage.package">
+                                <option *ngFor="let package of mainService.packageList;" [ngValue]="package">
+                                    {{package}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-control-sm" style="width: 50px !important" min="0" [(ngModel)]="confirmPackage.unit">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="card-footer">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button class="btn btn-primary m-1 pull-left" (click)="CreatePack()" >
-                    <span class="fa fa-floppy-o"></span> Create Pack
+                <button class="btn btn-primary m-1 pull-left" (click)="CreatePack()">
+                    <span class="fa fa-floppy-o"></span> Confirm Pack
                 </button>
                 <button class="btn btn-next m-1" (click)="previousPage()"
                     [disabled]="page==1 || !packConfirmList?.length"><span class="fa fa-chevron-left"> </span></button>

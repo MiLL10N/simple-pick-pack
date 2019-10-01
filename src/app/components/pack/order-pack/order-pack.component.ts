@@ -86,7 +86,6 @@ export class OrderPackComponent implements OnInit {
       docNums: this.pushSelectData(),
       userId: this.mainService.user.userId
     };
-    console.log(jsonData);
     this.mainService.updateOrderPack(jsonData).subscribe(resp => {
       this.selectPickForPack();
     }, error => {

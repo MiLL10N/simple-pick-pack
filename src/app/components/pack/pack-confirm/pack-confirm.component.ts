@@ -3,6 +3,8 @@ import { MainService } from "src/app/services/api/main.service";
 import { LoadingScreenService } from "src/app/services/loading/loading-screen.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { selectPackListForConfirm } from "src/app/Model/Pack";
+import { CONST } from 'dist/simple-pick-pack/assets/const';
+import { pipe } from '@angular/core/src/render3';
 
 @Component({
   selector: "app-pack-confirm",
@@ -15,11 +17,17 @@ export class PackConfirmComponent implements OnInit {
   packNumber: string;
   page: number;
   size: number;
-  packagelists = ["Pakage A", "Pakage B", "Pakage C", "Pakage D"];
+  private updatePack: updatePackConfirm;
+kagelists = ["Pakage A", "Pakage B", "Pakage C", "Pakage D"];  
+confirmPackage={
+  package:"",
+  unit:0
+}
   constructor(
-    private mainService: MainService,
+    public mainService: MainService,
     private loadingScreen: LoadingScreenService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private route :Router
   ) {}
 
   ngOnInit() {
@@ -50,7 +58,32 @@ export class PackConfirmComponent implements OnInit {
     );
   }
   CreatePack() {
-    console.log(this.packConfirmList);
+    this.loadingScreen.startLoading();
+    
+
+    this.mainService.updatePackConfirm(this.buildData()).subscribe(resp => {
+      this.route.navigateByUrl('/pack-list');
+ 
+    }, error => {
+      this.loadingScreen.stopLoading();
+      alert(CONST.error);
+    });
+
+  }
+  buildData(){
+    const updatePackConfirms = [];
+  
+    this.packConfirmList.filter(i=>i.isbnRecheck!=null).forEach(i=>
+ 
+      updatePackConfirms.push({itemCode: i.itemCode,
+        docNum:  i.docNum,
+        packNo:this.packNumber,
+        package: i.package,
+        unit: i.unit,
+        userId: this.mainService.user.userId,
+        isbN_Recheck: i.isbnRecheck})
+    )
+    return updatePackConfirms;
   }
   nextPage() {
     this.page++;
@@ -61,4 +94,13 @@ export class PackConfirmComponent implements OnInit {
     this.page--;
     this.getPackConfirmList(this.page);
   }
+}
+export class  updatePackConfirm{
+  itemCode: string;
+      docNum: string;
+      packNo: string;
+      package: string;
+      unit: number;
+      userId: number;
+      isbN_Recheck: string;
 }

@@ -28,4 +28,5 @@ export class selectPickForPack {
     isbnRecheck : string;
     unit: number;
     package : string;
+    docNum: string;
   }

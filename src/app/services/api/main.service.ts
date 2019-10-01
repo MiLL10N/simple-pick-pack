@@ -13,6 +13,7 @@ export class MainService {
 
   regionList: any[] = [];
   countryList: any[] = [];
+  packageList: any[] = [];
   user: any;
 
   login(userName: string, password: string) {
@@ -57,9 +58,21 @@ export class MainService {
   selectPackListForConfirm(jsonData) {
     return this.httpService.post(CONST.url + '/api/Pack/selectPackListForConfirm/' , jsonData);
   }
+  updatePackConfirm(jsonData) {
+    return this.httpService.post(CONST.url + '/api/Pack/updatePackConfirm/' , jsonData);
+  }
   getRegion() {
     this.httpService.get(CONST.url + '/api/Master/selectRegion').subscribe(resp => {
       this.regionList = resp;
+    }, error => {
+      alert(CONST.error);
+    });
+  }
+
+
+  getPackage() {
+    this.httpService.get(CONST.url + '/api/Master/selectPackage').subscribe(resp => {
+      this.packageList = resp;
     }, error => {
       alert(CONST.error);
     });
