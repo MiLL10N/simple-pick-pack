@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h4>หน้าคำสั่งซื้อ</h4>
+    <h4>คำสั่ง Pack</h4>
   </div>
   <div class="card-body">
     <div class="row mt-2">
@@ -56,20 +56,21 @@
         </div>
       </div>
       <div class="col-sm-5">
-        <button type="button" class="btn btn-primary" (click)="searchData()"><span class="fa fa-search"></span>
+        <button type="button" class="btn btn-primary" (click)="selectPickForPack()"><span class="fa fa-search"></span>
           ค้นหา</button>
       </div>
     </div>
 
   </div>
   <div class="card-body">
-    <div class="table-responsive">
-    <table *ngIf="invoiceList?.length" class="table table-hover table-striped">
+
+    <table *ngIf="selectDocumentPrintingList?.length" class="table table-hover table-striped table-responsive">
       <thead>
-        <tr class="text-center align-top " >
+        <tr class="text-center align-top ">
           <th><input type="checkbox" (click)="checkAll()" [ngModel]="checkSelected()"></th>
-          <th >ลำดับ</th>
+          <th>ลำดับ</th>
           <th>เลขที่เอกสาร</th>
+          <th>Pack Number</th>
           <th>วันที่จัดส่ง</th>
           <th>ลูกค้า</th>
           <th>ชื่อลูกค้า</th>
@@ -78,41 +79,42 @@
           <th class="text-right">มูลค่า</th>
           <th>Ship to</th>
           <th>ขนส่ง</th>
+          <th>Remark</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of invoiceList;let i = index" class="text-center">
+        <tr *ngFor="let item of selectDocumentPrintingList;let i = index" class="text-center">
           <td><input type="checkbox" [(ngModel)]="item.isSelected" name="checkbox_{{i}}"></td>
           <td>{{i+1+((page-1)*size)}}</td>
           <td>{{item.docNum}}</td>
+          <td (click)="selectPackConfirm(item.packNo)" class=" cursor-pointer">{{item.packNo}}</td>
           <td>{{(item.docDueDate?item.docDueDate:'-') | date:'dd/MM/yyyy'}}</td>
           <td>{{item.cardCode?item.cardCode:'-'}}</td>
           <td>{{item.cardName?item.cardName:'-'}}</td>
           <td>{{item.county?item.county:'-'}}</td>
-          <td >{{item.descript?item.descript:'-'}}</td>
-          <td  class="text-right">{{(item.price?item.price:'-') | number}}</td>
+          <td>{{item.descript?item.descript:'-'}}</td>
+          <td class="text-right">{{(item.price?item.price:'-') | number}}</td>
           <td>{{item.shipToCode?item.shipToCode:'-'}}</td>
           <td>{{item.transporter?item.transporter:'-'}}</td>
+          <td>{{item.transporter?item.remark:'-'}}</td>
         </tr>
       </tbody>
     </table>
-    </div>
-    <div class="w-100 text-center" *ngIf="!invoiceList?.length">
+    <div class="w-100 text-center" *ngIf="!selectDocumentPrintingList?.length">
       <span class="mb-3">-- No Data --</span>
     </div>
   </div>
   <div class="card-footer">
     <div class="row">
-
       <div class="col-sm-12 text-center">
-        <button class="btn btn-primary m-1 pull-left" (click)="addPickList()" [disabled]="!checkSelected()">
-          <span class="fa fa-floppy-o"></span> Create Pick
+        <button class="btn btn-primary m-1 pull-left" (click)="addPackList()" [disabled]="!checkSelected()">
+          <span class="fa fa-print"></span> Print
         </button>
-        <button class="btn btn-next  m-1" (click)="previousPage()" [disabled]="page==1 || !invoiceList?.length"> <span
-            class="fa fa-chevron-left"></span>
+        <button class="btn btn-next  m-1" (click)="previousPage()"
+          [disabled]="page==1 || !selectDocumentPrintingList?.length"> <span class="fa fa-chevron-left"></span>
         </button>
         <button class="btn btn-next m-1" (click)="nextPage()"
-          [disabled]="!invoiceList?.length || invoiceList?.length < size"> <span
+          [disabled]="!selectDocumentPrintingList?.length || selectDocumentPrintingList?.length < size"> <span
             class="fa fa-chevron-right"></span></button>
       </div>
     </div>

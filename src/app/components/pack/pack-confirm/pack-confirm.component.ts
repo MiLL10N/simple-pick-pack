@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { MainService } from "src/app/services/api/main.service";
 import { LoadingScreenService } from "src/app/services/loading/loading-screen.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { selectPackListForConfirm } from "src/app/Model/Pack";
-import { CONST } from 'dist/simple-pick-pack/assets/const';
-import { pipe } from '@angular/core/src/render3';
+import { selectPackListForConfirm, packListForConfirm } from "src/app/Model/Pack";
+import { CONST } from "dist/simple-pick-pack/assets/const";
 
 @Component({
   selector: "app-pack-confirm",
@@ -12,22 +11,17 @@ import { pipe } from '@angular/core/src/render3';
   styleUrls: ["./pack-confirm.component.css"]
 })
 export class PackConfirmComponent implements OnInit {
-  packConfirmList: selectPackListForConfirm[] = new Array();
+  packConfirmList: selectPackListForConfirm = new selectPackListForConfirm();
   params: any;
   packNumber: string;
   page: number;
   size: number;
-  private updatePack: updatePackConfirm;
-kagelists = ["Pakage A", "Pakage B", "Pakage C", "Pakage D"];  
-confirmPackage={
-  package:"",
-  unit:0
-}
+
   constructor(
     public mainService: MainService,
     private loadingScreen: LoadingScreenService,
     private activatedRoute: ActivatedRoute,
-    private route :Router
+    private route: Router
   ) {}
 
   ngOnInit() {
@@ -35,6 +29,25 @@ confirmPackage={
     this.size = 10;
     this.packNumber = this.activatedRoute.snapshot.paramMap.get("id");
     this.getPackConfirmList();
+  }
+  updatePackRecheckIsbn(item :packListForConfirm) {
+    const jsonData = {
+      packNo: this.packNumber,
+      docNum: item.docNum,
+      itemCode: item.itemCode,
+      isbnRecheck: item.isbnRecheck,
+      package: item.package,
+      unit: item.unit
+    };
+    console.log(jsonData);
+    this.mainService.updatePackRecheckIsbn(jsonData).subscribe(
+      resp => {
+        console.log("success");
+      },
+      error => {
+        alert(CONST.error);
+      }
+    );
   }
   getPackConfirmList(page?) {
     this.loadingScreen.startLoading();
@@ -53,37 +66,43 @@ confirmPackage={
       },
       error => {
         this.loadingScreen.stopLoading();
-        this.packConfirmList = new Array<selectPackListForConfirm>();
+        this.packConfirmList = new selectPackListForConfirm();
       }
     );
   }
   CreatePack() {
     this.loadingScreen.startLoading();
-    
-
-    this.mainService.updatePackConfirm(this.buildData()).subscribe(resp => {
-      this.route.navigateByUrl('/pack-list');
- 
-    }, error => {
-      this.loadingScreen.stopLoading();
-      alert(CONST.error);
-    });
-
+    this.mainService.updatePackConfirm(this.buildData()).subscribe(
+      resp => {
+        this.route.navigateByUrl("/pack-list");
+      },
+      error => {
+        this.loadingScreen.stopLoading();
+        alert(CONST.error);
+      }
+    );
   }
-  buildData(){
-    const updatePackConfirms = [];
-  
-    this.packConfirmList.filter(i=>i.isbnRecheck!=null).forEach(i=>
+
+  buildData() {
+    const updatePack: any = [];
+    // this.packConfirmList.packListForConfirms
+    //   .filter(i => i.isbnRecheck != null)
+    //   .forEach(x => {
+    //     updatePack.push({
+    //       itemCode: x.itemCode,
+    //       docNum: x.docNum
+    //     });
+    //   });
+
+    const json = {
+      packNo: this.packConfirmList.packNo,
+      package: this.packConfirmList.package,
+      unit: this.packConfirmList.unit,
+      userId: this.mainService.user.userId,
+      // updatePackConfirms: updatePack
+    };
  
-      updatePackConfirms.push({itemCode: i.itemCode,
-        docNum:  i.docNum,
-        packNo:this.packNumber,
-        package: i.package,
-        unit: i.unit,
-        userId: this.mainService.user.userId,
-        isbN_Recheck: i.isbnRecheck})
-    )
-    return updatePackConfirms;
+    return json;
   }
   nextPage() {
     this.page++;
@@ -94,13 +113,4 @@ confirmPackage={
     this.page--;
     this.getPackConfirmList(this.page);
   }
-}
-export class  updatePackConfirm{
-  itemCode: string;
-      docNum: string;
-      packNo: string;
-      package: string;
-      unit: number;
-      userId: number;
-      isbN_Recheck: string;
 }

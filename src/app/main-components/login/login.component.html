@@ -2,10 +2,10 @@
   <div class="row" style="height: 95vh">
     <div class="col my-auto">
       <div class="card card-center" style="width: 34%;">
-        <div class="card-header text-center bg-white text-black" style="font-size: 1.2rem;padding: 1.5rem 0">
-          <b>Packing System</b>
+        <div class="card-header text-center header" style="font-size: 1.2rem;padding: 1.5rem 0">
+          Packing System
         </div>
-        <div class="card-body" style="padding: 3rem 1.25rem">
+        <div class="card-body" style="padding: 3rem">
           <div class="row">
             <div class="col">
               <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
@@ -25,7 +25,9 @@
                     [ngClass]="{'is-invalid': (loginForm.submitted && !loginModel.password)}" class="form-control"
                     placeholder="Password" aria-label="Password" name="password" [(ngModel)]="loginModel.password">
                 </div>
-                <button type="submit" class="btn btn-primary w-100">LOGIN</button>
+                <div class="mt-5">
+                  <button type="submit" class="btn btn-primary w-100">LOGIN</button>
+                </div>
               </form>
             </div>
           </div>

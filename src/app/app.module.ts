@@ -15,6 +15,8 @@ import { PickListItemByGroupComponent } from './components/pick/pick-list-item-b
 import { OrderPackComponent } from './components/pack/order-pack/order-pack.component';
 import { PackListComponent } from './components/pack/pack-list/pack-list.component';
 import { PackConfirmComponent } from './components/pack/pack-confirm/pack-confirm.component';
+import { DocumentPrintingComponent } from './components/pack/document-printing/document-printing.component';
+import { PostConfirmListComponent } from './components/clear/post-confirm-list/post-confirm-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PackConfirmComponent } from './components/pack/pack-confirm/pack-confir
     PickListItemByGroupComponent,
     OrderPackComponent,
     PackListComponent,
-    PackConfirmComponent
+    PackConfirmComponent,
+    DocumentPrintingComponent,
+    PostConfirmListComponent
   ],
   imports: [
     BrowserModule,

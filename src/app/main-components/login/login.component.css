@@ -3,3 +3,7 @@
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
 }
+.header{
+    background-color: #1C2833;
+    color: whitesmoke;
+}

@@ -36,6 +36,9 @@
   background-color: gray;
   color: #273746;
 }
+input[type=checkbox] {
+  cursor: pointer;
+}
 
 table {
   border-collapse: collapse;
@@ -49,4 +52,9 @@ thead {
 }
 th {
   font-weight: normal;
+  white-space:nowrap;
+}
+td {
+  font-weight: normal;
+  white-space:nowrap;
 }
