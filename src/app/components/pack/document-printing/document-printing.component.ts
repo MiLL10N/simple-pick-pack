@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { selectDocumentPrintingListModel } from 'src/app/Model/Pack';
 import { LoadingScreenService } from 'src/app/services/loading/loading-screen.service';
 import { MainService } from 'src/app/services/api/main.service';
-import { CONST } from 'dist/simple-pick-pack/assets/const';
+import { CONST } from 'src/assets/const';
 import { Router } from '@angular/router';
 
 @Component({

@@ -3,7 +3,7 @@ import { MainService } from "src/app/services/api/main.service";
 import { LoadingScreenService } from "src/app/services/loading/loading-screen.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { selectPackListForConfirm, packListForConfirm } from "src/app/Model/Pack";
-import { CONST } from "dist/simple-pick-pack/assets/const";
+import { CONST } from "src/assets/const";
 
 @Component({
   selector: "app-pack-confirm",
@@ -37,7 +37,8 @@ export class PackConfirmComponent implements OnInit {
       itemCode: item.itemCode,
       isbnRecheck: item.isbnRecheck,
       package: item.package,
-      unit: item.unit
+      unit: item.unit,
+      userId: this.mainService.user.userId
     };
     console.log(jsonData);
     this.mainService.updatePackRecheckIsbn(jsonData).subscribe(

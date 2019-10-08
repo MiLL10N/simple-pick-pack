@@ -1,4 +1,4 @@
-export class selectDocumentPrintingListModel {
+export class  selectPostConfirmListModel {
     docNum: string;
     docDate: string;
     docDueDate: string;
