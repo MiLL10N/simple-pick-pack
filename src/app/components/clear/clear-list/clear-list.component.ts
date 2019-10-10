@@ -1,16 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { MainService } from "src/app/services/api/main.service";
 import { LoadingScreenService } from "src/app/services/loading/loading-screen.service";
-import { selectPostConfirmListModel } from "src/app/Model/clear";
+import {  selectClearListModel } from "src/app/Model/clear";
 import { CONST } from 'src/assets/const';
 
-
 @Component({
-  selector: "app-post-confirm-list",
-  templateUrl: "./post-confirm-list.component.html",
-  styleUrls: ["./post-confirm-list.component.css"]
+  selector: 'app-clear-list',
+  templateUrl: './clear-list.component.html',
+  styleUrls: ['./clear-list.component.css']
 })
-export class PostConfirmListComponent implements OnInit {
+export class ClearListComponent implements OnInit {
   marketArea = "";
   province = "";
   custName = "";
@@ -20,7 +19,7 @@ export class PostConfirmListComponent implements OnInit {
   page: number;
   size: number;
   pickNo: string;
-  selectPostConfirmList: selectPostConfirmListModel[] = new Array();
+  selectClearLists: selectClearListModel[] = new Array();
   constructor(
     public mainService: MainService,
     private loadingScreen: LoadingScreenService
@@ -29,9 +28,9 @@ export class PostConfirmListComponent implements OnInit {
   ngOnInit() {
     this.page = 1;
     this.size = 10;
-    this.selectPickForPack();
+    this.selectClearList();
   }
-  selectPickForPack(page?) {
+  selectClearList(page?) {
     this.page = page ? page : 1;
     this.loadingScreen.startLoading();
     const jsonData = {
@@ -44,10 +43,10 @@ export class PostConfirmListComponent implements OnInit {
       page: this.page,
       size: this.size
     };
-    this.mainService.selectPostConfirmList(jsonData).subscribe(
+    this.mainService.selectClearList(jsonData).subscribe(
       resp => {
         this.loadingScreen.stopLoading();
-        this.selectPostConfirmList = resp;
+        this.selectClearLists = resp;
       },
       error => {
         this.loadingScreen.stopLoading();
@@ -56,30 +55,12 @@ export class PostConfirmListComponent implements OnInit {
   }
   nextPage() {
     this.page++;
-    this.selectPickForPack(this.page);
+    this.selectClearList(this.page);
   }
 
   previousPage() {
     this.page--;
-    this.selectPickForPack(this.page);
+    this.selectClearList(this.page);
   }
-  updatePostConfirm(item: selectPostConfirmListModel,flagClear:boolean) {
-
-    const jsonData = {
-      docNum: item.docNum,
-      TrackNumber: item.trackNumber,
-      flagClear: flagClear,
-      userId: this.mainService.user.userId
-    };
-    console.log(jsonData);
-    this.mainService.updatePostConfirm(jsonData).subscribe(
-      resp => {
-        console.log("success");
-        this.selectPickForPack();
-      },
-      error => {
-        alert(CONST.error);
-      }
-    );
-  }
+  
 }

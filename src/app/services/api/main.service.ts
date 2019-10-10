@@ -109,6 +109,12 @@ export class MainService {
       jsonData
     );
   }
+  selectClearList(jsonData) {
+    return this.httpService.post(
+      CONST.url + "/api/Clear/selectClearList/",
+      jsonData
+    );
+  }
   updatePostConfirm(jsonData) {
     return this.httpService.post(
       CONST.url + "/api/Clear/updatePostConfirm/",

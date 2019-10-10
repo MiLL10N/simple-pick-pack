@@ -10,6 +10,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { OrderListComponent } from "./components/order/order-list/order-list.component";
 import { LoginComponent } from "./main-components/login/login.component";
 import { PickListComponent } from "./components/pick/pick-list/pick-list.component";
+import { ClearListComponent } from './components/clear/clear-list/clear-list.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,11 @@ const routes: Routes = [
   {
     path: "post-confirm-list",
     component: PostConfirmListComponent
+  }
+  ,
+  {
+    path: "clear-list",
+    component: ClearListComponent
   }
 ];
 

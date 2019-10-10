@@ -79,6 +79,7 @@
             <th>ขนส่ง</th>
             <th>Remark</th>
             <th>ปณ.</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -93,12 +94,14 @@
             <td class="text-right">{{(item.price?item.price:'-') | number}}</td>
             <td>{{item.shipToCode?item.shipToCode:'-'}}</td>
             <td>{{item.transporter?item.transporter:'-'}}</td>
-            <td>{{item.remark?item.remark:'-'}}</td>
+            <td class="text-left">{{item.remark?item.remark:'-'}}</td>
             <td>
               <input type="text" class="form-control form-control-sm" style="width: 150px !important"
-                  [(ngModel)]="item.trackNumber" name="trackNumber_{{i}}"
-                  (change)="updatePostConfirm(item)">
-          </td>
+                [(ngModel)]="item.trackNumber" name="trackNumber_{{i}}" (change)="updatePostConfirm(item,false)">
+            </td>
+            <td>
+                <button type="button" class="btn btn-link p-0" (click)="updatePostConfirm(item,true)">{{item.flagClear?item.flagClear:'Confirm'}}</button>
+            </td>
           </tr>
         </tbody>
       </table>

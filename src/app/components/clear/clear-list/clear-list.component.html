@@ -1,0 +1,124 @@
+<div class="card">
+    <div class="card-header">
+      <h4>Complete</h4>
+    </div>
+    <div class="card-body">
+      <div class="row mt-2">
+        <div class="col-sm-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">วันที่จัดส่ง</span>
+            </div>
+            <input type="date" class="form-control" [(ngModel)]="startDate" name="startDate">
+            <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate">
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">เขตการขาย</span>
+            </div>
+            <select name="marketArea" id="marketArea" [(ngModel)]="marketArea" class="form-control">
+              <option value="" selected>ไม่กำหนด</option>
+              <option *ngFor="let area of mainService.regionList" [value]="area">{{area}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">ชื่อ</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="custName" name="custName">
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">เลขที่เอกสาร</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="docNo" name="docNo">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">จังหวัด</span>
+            </div>
+            <select name="province" id="province" [(ngModel)]="province" class="form-control">
+              <option value="" selected>ไม่กำหนด</option>
+              <option *ngFor="let country of mainService.countryList" [value]="country">{{country}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <button type="button" class="btn btn-primary" (click)="selectClearList()"><span class="fa fa-search"></span>
+            ค้นหา</button>
+        </div>
+      </div>
+  
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table *ngIf="selectClearLists?.length" class="table table-hover table-striped">
+          <thead>
+            <tr class="text-center align-top ">
+              <th>ลำดับ</th>
+              <th>เลขที่เอกสาร</th>
+              <th>วันที่จัดส่ง</th>
+              <th>รหัสลูกค้า</th>
+              <th>ชื่อลูกค้า</th>
+              <th>จังหวัด</th>
+              <th>เขต</th>
+              <th class="text-right">มูลค่า</th>
+              <th>Ship to</th>
+              <th>ขนส่ง</th>
+              <th>Remark</th>
+              <th>ปณ.</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of selectClearLists;let i = index" class="text-center">
+              <td>{{i+1+((page-1)*size)}}</td>
+              <td>{{item.docNum}}</td>
+              <td>{{(item.docDueDate?item.docDueDate:'-') | date:'dd/MM/yyyy'}}</td>
+              <td>{{item.cardCode?item.cardCode:'-'}}</td>
+              <td>{{item.cardName?item.cardName:'-'}}</td>
+              <td>{{item.county?item.county:'-'}}</td>
+              <td>{{item.descript?item.descript:'-'}}</td>
+              <td class="text-right">{{(item.price?item.price:'-') | number}}</td>
+              <td>{{item.shipToCode?item.shipToCode:'-'}}</td>
+              <td>{{item.transporter?item.transporter:'-'}}</td>
+              <td class="text-left">{{item.remark?item.remark:'-'}}</td>
+              <td>
+                  {{item.trackNumber?item.trackNumber:'-'}}
+              </td>
+              <td>
+                  {{item.flagClear?'Complete':'In Progress'}}
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-100 text-center" *ngIf="!selectClearLists?.length">
+        <span class="mb-3">-- No Data --</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <button class="btn btn-next  m-1" (click)="previousPage()"
+            [disabled]="page==1 || !selectClearLists?.length"> <span class="fa fa-chevron-left"></span>
+          </button>
+          <button class="btn btn-next m-1" (click)="nextPage()"
+            [disabled]="!selectClearLists?.length || selectClearLists?.length < size"> <span
+              class="fa fa-chevron-right"></span></button>
+        </div>
+      </div>
+    </div>
