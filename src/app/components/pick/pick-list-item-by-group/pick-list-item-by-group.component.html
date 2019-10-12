@@ -47,7 +47,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <button class="btn btn-primary m-1 pull-right"> <span class="fa fa-print"></span>Print</button>
+          <button class="btn btn-primary m-1 pull-right" (click)="printPickItemByGroup()"> <span class="fa fa-print"></span> Print</button>
           <button class="btn btn-primary m-1 pull-right" (click)="updatePickConfirm()"
             *ngIf="flagConfirm">Confirm</button>
         </div>

@@ -54,6 +54,13 @@ export class MainService {
       jsonData
     );
   }
+  printPickItemByGroup(jsonData) {
+    return this.httpService.downloadDoc(
+      CONST.url + "/api/Pick/printPickItemByGroup/",
+      jsonData
+    );
+  }
+  
   updatePickConfirm(jsonData) {
     return this.httpService.post(
       CONST.url + "/api/Pick/updatePickConfirm/",
