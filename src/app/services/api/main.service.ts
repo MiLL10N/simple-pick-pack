@@ -109,13 +109,38 @@ export class MainService {
       jsonData
     );
   }
+  printLabel(jsonData) {
+    return this.httpService.downloadDoc(
+      CONST.url + "/api/Pack/printLabel/",
+      jsonData
+    );
+  }
+  selectPackageStock(jsonData) {
+    return this.httpService.post(
+      CONST.url + "/api/Pack/selectPackageStock/",jsonData
+    );
+  }
+  updatePackageStock(jsonData) {
+    return this.httpService.post(
+      CONST.url + "/api/Pack/updatePackageStock/",
+      jsonData
+    );
+  }
+  printOutOfStock(jsonData) {
+    return this.httpService.downloadDoc(
+      CONST.url + "/api/Pack/printOutOfStock/",
+      jsonData
+    );
+  }
 
+  
   selectPostConfirmList(jsonData) {
     return this.httpService.post(
       CONST.url + "/api/Clear/selectPostConfirmList/",
       jsonData
     );
   }
+
   selectClearList(jsonData) {
     return this.httpService.post(
       CONST.url + "/api/Clear/selectClearList/",

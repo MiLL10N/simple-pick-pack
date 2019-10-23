@@ -1,3 +1,4 @@
+import { PackageStockComponent } from './components/pack/package-stock/package-stock.component';
 import { PostConfirmListComponent } from "./components/clear/post-confirm-list/post-confirm-list.component";
 import { DocumentPrintingComponent } from "./components/pack/document-printing/document-printing.component";
 import { PackConfirmComponent } from "./components/pack/pack-confirm/pack-confirm.component";
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: "clear-list",
     component: ClearListComponent
+  },
+  {
+    path: "package-stock",
+    component: PackageStockComponent
   }
 ];
 

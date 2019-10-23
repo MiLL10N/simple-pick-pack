@@ -19,10 +19,14 @@ export class LoginComponent implements OnInit {
   constructor(private mainService: MainService) {}
 
   ngOnInit() {
+   if( CONST.url.search("locahost"))
+   {
     this.mainService.login("Admin", "1qaz2wsx").subscribe(resp => {
       this.mainService.user = resp;
       this.isLogin.emit(true);
     });
+   }
+
   }
 
   login(loginForm: NgForm) {

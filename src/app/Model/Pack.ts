@@ -53,3 +53,12 @@ export class selectDocumentPrintingListModel {
   packNo: string;
   isSelected = false;
 }
+
+export class selectPackageStock {
+
+  packageId: number;
+  packageName: string;
+  active: boolean;
+  qty: number;
+  flagNew:boolean;
+}

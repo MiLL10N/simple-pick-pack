@@ -18,6 +18,7 @@ import { PackConfirmComponent } from './components/pack/pack-confirm/pack-confir
 import { DocumentPrintingComponent } from './components/pack/document-printing/document-printing.component';
 import { PostConfirmListComponent } from './components/clear/post-confirm-list/post-confirm-list.component';
 import { ClearListComponent } from './components/clear/clear-list/clear-list.component';
+import { PackageStockComponent } from './components/pack/package-stock/package-stock.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ClearListComponent } from './components/clear/clear-list/clear-list.com
     PackConfirmComponent,
     DocumentPrintingComponent,
     PostConfirmListComponent,
-    ClearListComponent
+    ClearListComponent,
+    PackageStockComponent
   ],
   imports: [
     BrowserModule,

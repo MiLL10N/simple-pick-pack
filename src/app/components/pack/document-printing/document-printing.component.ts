@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { selectDocumentPrintingListModel } from 'src/app/Model/Pack';
-import { LoadingScreenService } from 'src/app/services/loading/loading-screen.service';
-import { MainService } from 'src/app/services/api/main.service';
-import { CONST } from 'src/assets/const';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { selectDocumentPrintingListModel } from "src/app/Model/Pack";
+import { LoadingScreenService } from "src/app/services/loading/loading-screen.service";
+import { MainService } from "src/app/services/api/main.service";
+import { CONST } from "src/assets/const";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-document-printing',
-  templateUrl: './document-printing.component.html',
-  styleUrls: ['./document-printing.component.css']
+  selector: "app-document-printing",
+  templateUrl: "./document-printing.component.html",
+  styleUrls: ["./document-printing.component.css"]
 })
 export class DocumentPrintingComponent implements OnInit {
   marketArea = "";
@@ -57,6 +57,52 @@ export class DocumentPrintingComponent implements OnInit {
       }
     );
   }
+  printLabel() {
+    const jsonData = {
+      docNums: this.pushSelectData()
+    };
+    console.log(jsonData);
+    this.mainService.printLabel(jsonData).subscribe(
+      resp => {
+        this.loadingScreen.stopLoading();
+        this.printDoc(resp);
+      },
+      error => {
+        this.loadingScreen.stopLoading();
+      }
+    );
+  }
+
+  printOutOfStock(docNum: string) {
+    const jsonData = {
+      docNum: docNum
+    };
+    console.log(jsonData);
+    this.mainService.printOutOfStock(jsonData).subscribe(
+      resp => {
+        this.loadingScreen.stopLoading();
+        this.printDoc(resp);
+      },
+      error => {
+        this.loadingScreen.stopLoading();
+      }
+    );
+  }
+  private printDoc(resp: Blob) {
+    const newBlob = new Blob([resp], { type: "application/pdf" });
+
+    // IE doesn't allow using a blob object directly as link href
+    // instead it is necessary to use msSaveOrOpenBlob
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(newBlob, "your.pdf");
+      return;
+    }
+
+    // For other browsers:
+    // Create a link pointing to the ObjectURL containing the blob.
+    const downloadURL = URL.createObjectURL(newBlob);
+    window.open(downloadURL);
+  }
   nextPage() {
     this.page++;
     this.selectPickForPack(this.page);
@@ -82,19 +128,7 @@ export class DocumentPrintingComponent implements OnInit {
       item.isSelected = isSelected;
     }
   }
-  addPackList() {
-    this.loadingScreen.startLoading();
-    const jsonData = {
-      docNums: this.pushSelectData(),
-      userId: this.mainService.user.userId
-    };
-    this.mainService.updateOrderPack(jsonData).subscribe(resp => {
-      this.selectPickForPack();
-    }, error => {
-      this.loadingScreen.stopLoading();
-      alert(CONST.error);
-    });
-  }
+
   pushSelectData() {
     const selectedString = [];
     for (const item of this.selectDocumentPrintingList) {

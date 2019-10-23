@@ -80,6 +80,7 @@
           <th>Ship to</th>
           <th>ขนส่ง</th>
           <th>Remark</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -97,6 +98,11 @@
           <td>{{item.shipToCode?item.shipToCode:'-'}}</td>
           <td>{{item.transporter?item.transporter:'-'}}</td>
           <td>{{item.transporter?item.remark:'-'}}</td>
+          <td>
+            <button class="btn btn-primary m-1 pull-left" (click)="printOutOfStock(item.docNum)">
+              <span class="fa fa-print"></span> ใบสินค้าขาดคราว 
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -107,9 +113,10 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <button class="btn btn-primary m-1 pull-left" (click)="addPackList()" [disabled]="!checkSelected()">
-          <span class="fa fa-print"></span> Print
+        <button class="btn btn-primary m-1 pull-left" (click)="printLabel()" [disabled]="!checkSelected()">
+          <span class="fa fa-print"></span> Print Label
         </button>
+       
         <button class="btn btn-next  m-1" (click)="previousPage()"
           [disabled]="page==1 || !selectDocumentPrintingList?.length"> <span class="fa fa-chevron-left"></span>
         </button>

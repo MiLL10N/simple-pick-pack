@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Package Stock</h4>
+  </div>
+
+  <div class="card-body ">
+
+    <table *ngIf="selectPackageStocks?.length" class="table table-hover table-striped w-50">
+      <thead>
+        <tr class="text-center align-top ">
+          <th>ลำดับ</th>
+          <th>Package Name</th>
+          <th style="width: 75px !important;">จำนวน</th>
+          <th>สถานะ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of selectPackageStocks;let i = index" class="text-center">
+          <td>{{i+1+((page-1)*size)}}</td>
+          <td>
+              <input type="text" class="form-control form-control-sm " [(ngModel)]="item.packageName" name="packageName_{{i}}"
+              (change)="updatePackageStock(item)" >
+          </td>
+          <td> <input type="number" class="form-control form-control-sm " [(ngModel)]="item.qty" name="qty_{{i}}"
+              (change)="updatePackageStock(item)" min="0"></td>
+          <td>
+            <button class="btn btn-default" type="button" (click)="removePackageStock(item)"><i
+                class="fa fa-minus-circle" aria-hidden="true"></i></button>
+
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <button class="btn btn-default" type="button" (click)="addPackageStock()"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i> Add</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="w-100 text-center" *ngIf="!selectPackageStocks?.length">
+      <span class="mb-3">-- No Data --</span>
+    </div>
+  </div>
+
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-next  m-1" (click)="previousPage()" [disabled]="page==1 || !selectPackageStocks?.length">
+          <span class="fa fa-chevron-left"></span>
+        </button>
+        <button class="btn btn-next m-1" (click)="nextPage()"
+          [disabled]="!selectPackageStocks?.length || selectPackageStocks?.length < size"> <span
+            class="fa fa-chevron-right"></span></button>
+      </div>
+    </div>
+  </div>

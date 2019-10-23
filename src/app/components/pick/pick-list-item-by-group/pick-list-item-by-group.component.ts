@@ -82,7 +82,7 @@ export class PickListItemByGroupComponent implements OnInit {
         // IE doesn't allow using a blob object directly as link href
         // instead it is necessary to use msSaveOrOpenBlob
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-          window.navigator.msSaveOrOpenBlob(newBlob);
+          window.navigator.msSaveOrOpenBlob(newBlob, "your.pdf");
           return;
         }
 
