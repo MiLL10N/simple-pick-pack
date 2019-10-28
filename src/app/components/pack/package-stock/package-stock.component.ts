@@ -20,32 +20,28 @@ export class PackageStockComponent implements OnInit {
   ngOnInit() {
     this.page = 1;
     this.size = 10;
+    this.addPackageStock();
     this.selectPackageStock();
   }
 
   selectPackageStock(page?) {
-
-
     this.page = page ? page : 1;
     const jsonData = {
       page: this.page,
       size: this.size
     };
 
-    this.mainService.selectPackageStock(jsonData).subscribe(
-      resp => {
-    
-        this.selectPackageStocks = resp;
-      }
-    );
+    this.mainService.selectPackageStock(jsonData).subscribe(resp => {   
+      this.selectPackageStocks = resp;
+    });
   }
   addPackageStock() {
     const selectPackage = new selectPackageStock();
     selectPackage.active = true;
     selectPackage.qty = 0;
-    selectPackage.packageId=0;
+    selectPackage.packageId = 0;
     selectPackage.packageName = "";
-    selectPackage.flagNew=true;
+    selectPackage.flagNew = true;
     this.selectPackageStocks.push(selectPackage);
   }
   removePackageStock(item: selectPackageStock) {

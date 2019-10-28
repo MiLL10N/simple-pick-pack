@@ -88,6 +88,21 @@ export class DocumentPrintingComponent implements OnInit {
       }
     );
   }
+  printInvoice(docNum: string) {
+    const jsonData = {
+      docNum: docNum
+    };
+    console.log(jsonData);
+    this.mainService.printInvoice(jsonData).subscribe(
+      resp => {
+        this.loadingScreen.stopLoading();
+        this.printDoc(resp);
+      },
+      error => {
+        this.loadingScreen.stopLoading();
+      }
+    );
+  }
   private printDoc(resp: Blob) {
     const newBlob = new Blob([resp], { type: "application/pdf" });
 

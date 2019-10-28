@@ -3,7 +3,7 @@
         <h4>หน้า Pack List</h4>
     </div>
     <div class="card-body">
-        <div>
+        <div class="table-responsive">
             <table *ngIf="packConfirmList.packListForConfirms?.length" class="table table-hover table-striped">
                 <thead>
                     <tr class="text-center">
@@ -53,31 +53,29 @@
         </div>
     </div>
     <div class="card-body">
-        <div>
-            <table class="table table-hover table-striped w-25">
-                <thead>
-                    <tr class="text-center">
-                        <th colspan="2">Package in Pack Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center">
-                        <td>
-                            <select class="form-control form-control-sm" style="width: 150px !important"
-                                [(ngModel)]="packConfirmList.package">
-                                <option *ngFor="let package of mainService.packageList;" [ngValue]="package">
-                                    {{package}}
-                                </option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control form-control-sm" style="width: 50px !important"
-                                min="0" [(ngModel)]="packConfirmList.unit" [disabled]="packConfirmList.package ==''">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table table-hover table-striped w-25">
+            <thead>
+                <tr class="text-center">
+                    <th colspan="2">Package in Pack Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td>
+                        <select class="form-control form-control-sm" style="width: 150px !important"
+                            [(ngModel)]="packConfirmList.package">
+                            <option *ngFor="let package of mainService.packageList;" [ngValue]="package">
+                                {{package}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control form-control-sm" style="width: 50px !important" min="0"
+                            [(ngModel)]="packConfirmList.unit" [disabled]="packConfirmList.package ==''">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="card-footer">
         <div class="row">

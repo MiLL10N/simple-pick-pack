@@ -132,6 +132,12 @@ export class MainService {
       jsonData
     );
   }
+  printInvoice(jsonData) {
+    return this.httpService.downloadDoc(
+      CONST.url + "/api/Pack/printInvoice/",
+      jsonData
+    );
+  }
 
   
   selectPostConfirmList(jsonData) {
